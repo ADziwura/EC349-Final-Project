@@ -1,0 +1,1982 @@
+---
+title: "EC349 Project Report"
+author: "u2110450"
+date: "`r Sys.Date()`"
+bibliography: EC349references.bib
+output:
+  pdf_document:
+    toc: true
+    toc_depth: '3'
+  html_document:
+    df_print: paged
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+    theme: united
+    highlight: textmate
+editor_options:
+  chunk_output_type: console
+  markdown:
+    wrap: 80
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+    include = TRUE,
+    message = FALSE,
+    warning = FALSE,
+    cache = FALSE
+)
+```
+
+**AI use Declaration:**
+
+*GenAI, including models employing Chain-of Thoughts by OpenAI and Deepseek, has
+been used to debug and optimise some scripts of the R and Python codes. It
+included compiling of graphs, R-output-to-Latex-tables conversions, Rmd file
+support, citations generation or suggestions on usage of specific R libraries.*
+
+**Disclaimer:**
+
+*For computational efficiency all in-text graphs and tables are copied as PNG or
+Latex tables, however they are all reproducible in the R code subsections. Some
+time-intensive R and Python codes are set to "eval=FALSE" which can be manually
+switched in .rMD file.*
+
+Word count: \~1250 words
+
+## Introduction
+
+This project aims to deploy several ‘Data Science methods’ for price prediction
+of Airbnb Listings in metropolitan area of London. I first preprocess the
+`listings.csv` from Inside Airbnb official database [@InsideAirbnb2024]. I then
+present several data science models and summarise their performance. Finally I
+discuss the findings and list the limitations of the project. All codes and
+datasets are available through
+[GitHub](https://github.com/ADziwura/EC349-Final-Project) and
+[Dropbox](https://www.dropbox.com/scl/fo/16u61nau4brhnnxnzxoni/AOTDTPsB_EL2TD5G4g7XW_8?rlkey=5o73diklh5ul0zhs1l2hai9fj&st=xqgsu4g9&dl=0).
+Due to limited space, formal details are available in the Appendix.
+
+## Literature Review
+
+Based on the [@InsideAirbnb2024] data several papers have deployed machine
+learning methods to predict prices in major cities such as New York [@Zhu2020]
+San Francisco, [@Lektorov2023] or Istanbul [@akalin2024]. The metropolitan area
+of London has not yet been covered, while the substantial dataset offers
+opportunity to deploy accurate price prediction models.
+
+![Fig 1: All available Airbnb Listings in London. Source:
+[@InsideAirbnb2024]](Graphics/Total%20Number%20of%20Listings%20.png){width="499"}
+
+## Data Cleaning
+
+The initial dataset consists of 95144 observations covering 75 variables. The
+quarterly data has been collected on 11th of December 2024, which partially
+omits the highly seasonal periods of Summer and Winter holidays.
+
+Data cleaning phase is divided into several steps (for full descriptions see
+Appendix):
+
+1.  **Converting to numericals:**
+
+    text-based categories, binary variables and calendar dates are converted to
+    numericals,
+
+2.  **Cleaning:**
+
+    Unnecessary information, such as `licence`, which do not offer any
+    explanatory power are dropped. I also remove missing data[^1]. For example,
+    `listings.csv` is missing 35% of all observations for `price`. This step is
+    crucial for computational efficiency. Furthermore, I perform PCA for highly
+    autocorrelated variables, such as disaggregated `availability` and
+    `ratings,` to identify the variables with highest explanatory power
+    [@aptech_pca].
+
+    ![](Graphics/PCA%20Review%20Ratings.png)
+
+3.  **Extracting information** **from some text** **based-descriptions:**
+
+    I decompose the list of available `amenities` to individual items and assign
+    them to each listing. For simplicity and meaningfulness[^2], I choose an
+    arbitrary number of 20 most popular amenities and create indexes: `kitchen`,
+    `safety` and `essentials`.
+
+    Furthermore, information covering the `hosts_name` and
+    `listings_description` are analysed and quantified through LLM-based text
+    analysis. I first deployed the LLaMA LLM model [@llama_guard2024] to assign
+    hosts’s gender and {0-1} values that offer additional information on
+    attractiveness of specific listing: `friendly_language`,
+    `extensive_description`, `modern_standard`. However, a quick verification
+    reveals the LLaMA is highly unreliable. Therefore, I deploy another Python
+    library [`Gender-predictor`](https://github.com/jitsm555/Gender-Predictor)
+    and exclude `listings_description` analysis from the final processed
+    dataset.
+
+4.  **Incorporating external information:**
+
+    Using publicly available data such as geolocations of London’s TfL stations
+    [@Bell2025] I create a new index: `num_stations_nearby`, which calculates
+    the number of underground stations within the 500m radius to each
+    listing[^3]. London is a major tourist hub. Based on the official London’s
+    Cultural Infrastructure Map [@GLA2023], I download geolocation data of major
+    touristic and nightlife sites and recreate the distance calculation
+    procedure. `Neighbourhood` of each listing is assigned based on Airbnb’s
+    official classifications ([@InsideAirbnb2024], `neighbourhood.csv`). For
+    specific discussion of the `neighbourhood` Dummy Variables see Appendix.
+
+5.  **Log variables**:
+
+    Based on [@Lektorov2023], I switch the target variable `price` to
+    logarithmic values in order to increase the predictive power of deployed
+    models[^4].
+
+[^1]: Some academic papers, such as [@gomonov2019], [@Lektorov2023], fill the
+    missing data using mean values, however there is not enough theoretical
+    argumentation to support this procedure.
+
+[^2]: Creating a list of each individual amenity would result in 8000+ variables
+    and would loose any universal properties of each observation.
+
+[^3]: Similar method has been proposed by [@akalin2024].
+
+[^4]: Logarthmic values decrease the distance between specific data points and
+    hence decrease scarcity. It is made possible due to the fact that prices are
+    non-negative.
+
+The resulting dataframe, available on Github under `final_data.csv`, consists of
+43241 observations and 85 variables (see **Final** **Variables Table**).
+
+## Analysis
+
+Interaction with the underlying data reveals it has some unreasonably priced
+outliers which requires filtering (See Appendix). The initial listings
+distribution across `price` after removing bottom and top 0.05% observations is:
+
+![](Graphics/Price%20Distirbution%20after%20filtering.png)
+
+Based on literature review, the dataset is then randomly split between training
+(80%) and validation (20%) subsets[^5]:
+
+[^5]: The `set.seed` function ensures the comparativeness between specific
+    models.
+
+| Dataset        | Mean   | Median | Variance | Std_Dev | Min    | Max    | Count  |
+|----------------|--------|--------|----------|---------|--------|--------|--------|
+| Training Set   | 4.8673 | 4.8675 | 0.5019   | 0.7084  | 3.3322 | 7.0648 | 34,632 |
+| Validation Set | 4.8550 | 4.8675 | 0.4807   | 0.6933  | 3.3322 | 7.0309 | 8,609  |
+
+**Table 1: Summary Statistics for Training and Validation sets.**
+
+I deploy several ‘Data Science methods’ [@dell2024]:
+
+1.  LASSO L1 Regularisation (`glm`)
+2.  Ridge L2 Regularisation (`glm`)
+3.  Elastic Model[^6] (`glm`)
+4.  Bagging (`ranger`)
+5.  Random Forest (`RF`)
+6.  Gradient Boosting (`GBM`)
+7.  XGBoost (`XGBoost`)
+8.  Bayesian XGBoost (`rBayesianOptimisation)`
+
+[^6]: As this project focuses on regression problem instead of
+    binary/multinomial classifications, the Logit LASSO or Ridge models are not
+    suitable and are not considered.
+
+Finally, following [@Athey2019], I deploy the '`Frankenstein`' model, which uses
+a combination of models merged together with optimised weights where:
+
+$$\begin{equation}
+    (\hat{p}^{\text{RF}}, \hat{p}^{\text{XGBoost}}, \hat{p}^{\text{LASSO}}) =
+    \arg \min_{p^{\text{RF}}, p^{\text{XGBoost}}, p^{\text{LASSO}}} 
+    \sum_{i=1}^{N^{\text{test}}} 
+    \left( Y_i - p^{\text{RF}} \hat{Y}_i^{\text{RF}} - p^{\text{XGBoost}} \hat{Y}_i^{\text{XGBoost}} - p^{\text{LASSO}} \hat{Y}_i^{\text{LASSO}} \right)
+\end{equation}$$
+
+conditioned on:
+
+$$\begin{equation}
+    p^{\text{RF}} + p^{\text{XGBoost}} + p^{\text{LASSO}} = 1, \quad \text{and} \quad p^{\text{RF}}, p^{\text{XGBoost}}, p^{\text{LASSO}} \geq 0.
+\end{equation}$$
+
+The motivation behind choosen models is to develop coding skills and
+specifically understand the performance differences between similar packages and
+methods within limited space.
+
+**Hyperparameter Tuning**
+
+After several iterations and empirical experiments including different data
+structures and dedicated libraries, I deploy several methods to maximise model's
+accuracy and minimise overfitting. These include:
+
+***Cross-validation:***
+
+Following academic papers [@Olsen2025], EC349 Lecture Notes and own empirical
+experiments the underlying dataset is substantial enough to set the number of
+k-folds to 10.
+
+***Trees**:*
+
+Setting the number of trees between computationally 'maximal' and 'optimal' is a
+major discussion in the Data Science field [@Breiman2001]. Following
+[@Probst2018, p.15] and own empirical experiments I set the number of trees to
+250 across all 'tree-based' models, which balances between marginal increased
+accuracy and infrastructure limitations of this project. Early stopping is
+introduced, where possible.
+
+**Other parameters**:
+
+Learning rate or shrinkage are set using dedicated libraries. For full
+discussion see Appendix.
+
+## Results and Discussion
+
+I deploy the Root Mean Squared Error (RMSE) and R-squared (R²) to evaluate
+performance of each model. The RMSE is the target metric minimised by each
+model, as it penalises large errors stronger than standard MSE. The R² measure
+is additionally deployed to measure predictive power across different models
+(see Appendix for methodology of evaluation metrics).$$
+\text{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} \left(y_i - \hat{y}_i\right)^2}
+$$
+
+$$
+\text{R}^2 = 1 - \frac{\sum_{i=1}^{N} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{N} (y_i - \bar{y})^2}
+$$
+
+Table 2 presents the Summary Statistics[^7].
+
+[^7]: The table is available in LATEX and RMD knitr formats in the 'Summary
+    Statistics' section of the R Code.
+
+| Model            | RMSE (Training) | RMSE (Validation) | R-squared |
+|------------------|-----------------|-------------------|-----------|
+| Lasso            | 0.350           | 0.341             | 75.9%     |
+| Ridge            | 0.351           | 0.342             | 75.7%     |
+| Elastic          | 0.350           | 0.341             | 75.9%     |
+| Boosting         | 0.000           | 0.371             | 71.4%     |
+| Bagging          | 0.109           | 0.286             | 83.0%     |
+| Random Forest    | 0.109           | 0.286             | 82.9%     |
+| XGBoost          | 0.173           | 0.269             | 85.0%     |
+| Bayesian XGBoost | 0.141           | 0.267             | 85.2%     |
+| 'Frankenstein'   | \-              | 0.269             | 85.0%     |
+
+**Table 2: Models Performance Comparison (Log Values for RMSE)**
+
+The `RBayesianOptimisation` [@Snoek2012] combined with XGBoost model performs
+best (Fig 2), however it is closely followed by standard XGBoost (Fig 3) and
+Random Forest models (Fig 3). Their close performance is acknowledged in broader
+literature, however there is no substantial theoretical explanation behind it
+[@Athey2019, p.2]. The Linear models: Lasso, Ridge and Elastic, underperform,
+which is reiterated by the 'Frankenstein' model where the Lasso weight is
+essentially dropped to 0. Furthermore, the difference between training and
+validation RMSEs suggest majority of deployed models are overfitted.
+Unfortunately, additional hyperparameter tuning, especially pruning and
+`minut.node.size` tuning, would require substantial increase in computational
+infrastructure.
+
+![Fig 2: Bayesian XGBoost performance (Nominal
+Values)](Graphics/Bayesian%20XGBoost%20performance.png)
+
+![Fig 3: Random Forest Model Performance (Nominal
+Values)](Graphics/RF%20Model%20performance.png){width="687"}
+
+The performance difference between the 'vanilla' `Boosting` (Gradient Boosting
+Model) and `XGBoost` (Extreme Gradient Boosting Model [@Chen2016].) reflects the
+essential importance of used statistical libraries: both models implement
+similar statistical methodology, yet achieve strikingly different results[^8].
+
+[^8]: However, the usage of optimal libraries has its limits: `XGBoost` and
+    `RBayesianOptimisation` result in very similar performances.
+
+![Fig 4: Importantly for e.g. price forecasting, features importance analysis
+suggests some of the variables have similar importance across
+models.](Graphics/XGBoost%20Feature%20Importance.png){width="480"}
+
+![Fig 5: The `Gain` function links importance of each feature relative to the
+top feature.](Graphics/Bagging%20Feature%20Importance.png){width="729"}
+
+![](Graphics/Residual%20distribution%20RF.png)
+
+![Fig 6, Fig 7: Despite log\$price, residual and error distribution analysis
+suggest majority of models (including Random Forest) tend to underestimate the
+target variable.](Graphics/Error%20Distribution%20RF.png)
+
+![Fig 8: The non-normality of error distribution is further visible with the QQ
+Plot (`ggpubr`) for the XGBoost
+model.](Graphics/XGBoost%20QQ%20test%20for%20normality.png)
+
+## Limitations
+
+**Used Methods**
+
+This project's proposed list of 'Data Science methods' is not exhaustive. Future
+research should incorporate additional models such as FNN [@Zhu2020], Support
+Vector Regressors [@tang_sangani2015] or leverage lat-long data using
+K-Neighbors.
+
+**Choosen Variables**
+
+While features importance analysis is useful, some variables' can be
+overrepresented. For example, `private_room` and `entire_home` categories are
+overly important due to the fact that they are dominating the underlying dataset
+(fig 8). They still exercise substantial impact on models' predictions as viable
+proxies for listing's square footage, however they should be treated with
+caution. Similarly, the dataset covers primarly short term rentals[^9].
+
+[^9]: 97.2% of all London's listings are available for less than 28 days
+    [@InsideAirbnb2024].
+
+![Fig 9: Room_type distribution across London's listings. Source:
+[\@InsideAirbnb2024]](Graphics/Room%20Types%20distribution.png){width="456"}
+
+**Omitted Variable Bias**
+
+Both [[\@tang_sangani2015](2015)] or [@Hill2015] incorporate image analysis and
+sentiment analysis into their models[^10]. Due to the lack of sufficient
+infrastructure, the project does not take into consideration the image data and
+descriptions of the listings. This leads to OVB[^11].
+
+[^10]: with often unintuitive results, e.g.: “*the photos of stylish, brightly
+    lit living rooms that tend to be preferred by professional photographers
+    don’t attract nearly as many potential guests as photos of cozy bedrooms
+    decorated in warm colors.*” [@Hill2015]
+
+[^11]: Additionally, verification of the underlying dataset and incorporating
+    its properties to the models, e.g. adding weights to account for hosts
+    preferences for £499 and £999 prices, would increase accuracy.
+
+**Time Series**
+
+Furthermore, while the chosen quarterly dataset omits seasonal events[^12] such
+as summer and winter holidays, the data does not account for monthly price
+differences, e.g. between listing *A* from September and listing *B* from
+December. Lack of time-series analysis and not accounting for macroeconomic
+changes in rent prices limits the predictive power of the existing models
+[@akalin2024]. For example, the average [**annual**]{.underline} change in
+London’s rent prices was 11.5% [@ons2025]. Furthermore, different districts
+experience different price dynamics. For example, [**monthly**]{.underline}
+property price percentage change in the City of London for December 2024 was
+**16.4%**! [@land_registry2025][^13].
+
+[^12]: [@Zhu2020] suggests their price prediction model suffers from January
+    seasonality.
+
+[^13]: A possible remedy for this issue would be incorporating several detailed
+    desegregated ONS datasets which cover rental price changes including
+    [geographic](https://www.london.gov.uk/programmes-strategies/housing-and-land/renting-home/london-rents-map?ac-34854=34852)
+    and [types of
+    rental](https://www.ons.gov.uk/economy/inflationandpriceindices/adhocs/2417privaterentalmarketinlondonoctober2023toseptember2024)
+    (e.g. one room bedroom) data. However, these are only published on an annual
+    basis, and therefore cannot be exercised for September-December 2024 data.
+
+![Fig 10: Monthly percentage change of property prices in City of London
+[@land_registry2025]](Graphics/Monthly%20percentage%20change%20of%20property%20prices%20in%20City%20of%20London.png)
+
+**Endogeneity**
+
+*Aerosolve* is a SVM classifier offered by the Airbnb [@aerosolve2015]. The tool
+estimates expected booking rate based on chosen price, which enables
+profit-maximising for hosts. It incorporates broad scope of variables including
+image analysis algorithms or dynamic pricing [@Hill2015]. While useful to Airbnb
+hosts, wide adoption of *Aerosolve* (and other specialised secondary-market
+services[^14]) introduces substantial endogeneity issues for identifying true
+price-drivers. If *Aerosolve* is first trained on underlying data and then
+widely deployed - its predictions substantially influence future prices of
+listings. The evolution and professionalization of Airbnb platform reinforces
+the effect[^15]. Therefore, when analysing the explanatory variables for
+listing’s `price`, the endogeneity risk is substantial. However, when only
+predicting `price`, the impact of *Aerosolve* can actually stabilise and
+solidify prices across similar listings - the model will suggest similar price
+ranges to similar listings. This further reiterates the predictability goal of
+this project instead of explainability.
+
+[^14]: There exists a dedicated secondary market of [sites and
+    companies](https://airbtics.com/annual-airbnb-revenue-in-greater-london-uk/#:~:text=A%20typical%20short%2Dterm%20rental,are%2055%2C484%20active%20Airbnb%20listings.)
+    that aim to monetise the 'Airbnb industry' by helping hosts to decide on
+    e.g. their pricing strategy. Some of the strategies include 'know your
+    neighbourhood' to offer competitive prices, or direct advise on 'photos and
+    descriptions'. These variables are not fully covered in this analysis.
+
+    \
+
+[^15]: Originally, Airbnb services were directed towards renting ‘spare rooms’
+    or ‘while on holidays’ [@Hill2015]. Today the industry is substantially
+    commercialised with e.g. 52% London’s hosts subletting more than one
+    property, and 20 000 listings being run by a “host” with more than 10
+    listings [@InsideAirbnb2024].
+
+## Conclusion
+
+Empirical evidence from the literature and this project’s findings suggest ‘Data
+Science methods’ are viable techniques to predict prices of Airbnb listings.
+Physical properties of the listing tend to be most price determining, which
+aligns across different models predictions and literature [@Hill2015]. The
+project's XGBoost overperforms results previous cited papers, which can be
+assigned to better seasonal data collection [@Zhu2020] and greater overall
+dataset [@akalin2024]. While the initial R² and RMSE results are promising,
+incorporating additional text and image-based data would yield better results,
+while additional refinery of data would lead to limiting overfitting and times
+series issues.
+
+## Appendix
+
+**Performance Measures**
+
+Apart from RMSE and R², due to the interpretability purposes, I used the Mean
+Absolute Percentage Error (MAPE) for some early hyperparameter tunning and
+nominally denominated prices:
+
+$$
+\text{MAPE} = \left(\frac{100}{N}\right) \sum_{i=1}^{N} \left| \frac{y_i - \hat{y}_i}{y_i} \right|
+$$
+
+where: - $y_i$ = Actual value (e.g., `validation_set$price`) - $\hat{y}_i$ =
+Predicted value (e.g., `boosting_valid_pred`) - $\bar{y}_i$ = Mean value - $N$ =
+Number of observations.
+
+**Structured Data**
+
+I had several options to choose from when transforming categorical variables to
+numerical data. For example, each `neighborhood`, `property_category` and
+`room_type` variables could be transformed to corresponding numerical values
+within a single column (e.g. `Camden` would correspond to value 6) or using
+`fastDummies` each category would receive an individual Dummy Variable column.
+While increasing computational requirements - the 'Dummies' option substantially
+increases the number of existing variables - it avoids the risk of models
+incorporating noice to their predictions. For example the linear `LASSO` model
+could create a positive relationship between values '32' and '33' in
+`neighborhoods`, while in reality "Wandsworth" and "Westminster" have only an
+alphabetical relationship. However, experimental evidence listed in tables below
+demonstrates marginal improvements between *Numerical Columns* and *Dummy*
+*Variables* approaches[^16].
+
+[^16]: The only major improvement comes for the Ridge model, which is expected
+    considering the properties of the absolute value penalty term.
+
+| Model            | RMSE   | MAPE   |
+|------------------|--------|--------|
+| Ridge Regression | 81.461 | 39.5%  |
+| Lasso Regression | 81.498 | 40.5%  |
+| Elastic Net      | 81.494 | 40.0%  |
+| Bagging          | 65.339 | 25.5%. |
+| Random Forest    | 65.545 | 25.6%. |
+| Boosting (GBM)   | 80.709 | 39.6%. |
+| XGBoost          | 62.752 | 23.5%. |
+
+***Table 2: RMSE and MAPE for 'Categories as Dummies' for nominal nominal price
+variable.***
+
+| Model            | RMSE    | MAPE   |
+|------------------|---------|--------|
+| Ridge Regression | 128.388 | 88.4%. |
+| Lasso Regression | 89.132  | 40.7%. |
+| Elastic Net      | 89.364  | 41.0%. |
+| Bagging          | 68.300  | 26.9%. |
+| Random Forest    | 68.366  | 27.0%. |
+| Boosting (GBM)   | 83.456  | 40.9%. |
+| XGBoost          | 63.255  | 23.8%. |
+
+***Table 3: RMSE and MAPE for 'Categories as Numerical Columns' for nominal
+price variable:***
+
+**Principle Component Analysis**
+
+The Principle Component Analysis is performed to identify the variables with
+highest explanatory power within the `has_availability` (fig 11) and
+`review_ratings` (fig 12) subsets [@aptech_pca]. The code is also available in
+**R code** section.
+
+![](Graphics/PCA%20Review%20Ratings.png)
+
+![](Graphics/PCA%20Has_availibility.png)
+
+**Hyparameter Tuning and used Libraries**
+
+During the project I have used several tuning methods in `R`. For example, the
+`rBayesianOptimisation` and `XGBoost` libraries offer different options to train
+and optimise underlying model. The table below displays the performance
+difference between the two, as well as 'vanilla' `GBM`:
+
+| Model            | RMSE   | MAPE  |
+|------------------|--------|-------|
+| Boosting (GBM)   | 83.456 | 40.9% |
+| XGBoost          | 63.259 | 23.7% |
+| Bayesian XGboost | 63.281 | 24.6% |
+
+***Table 4: Boosting performance based on different R libraries - data points
+for nominal values***
+
+While time and compute intensive, these experiments help in hyperparameter
+tuning and maximising the predictive power of each model.
+
+**Outlier Listings**
+
+A minor subset of listed flats is unreasonably priced, e.g. [£75 000 per
+night](https://www.airbnb.com/rooms/41557986), which can influence the
+performance of deployed models. Therefore, I arbitrarily remove the bottom and
+top 0.05% of all priced listings to account for outliers.
+
+![Fig 13: Example of unreasonably priced listings within the [@InsideAirbnb2024]
+(Self-analysis)](Graphics/Example%20of%20unreasonably%20priced%20listings%20within%20the%20Inside%20Airbnb%20dataset.png){width="557"}
+
+**Amenities**
+
+Counting the twenty most popular *amenities* is computing heavy, therefore the
+chosen categories are already predefined in the *Amenities* section of the *R*
+code. Each amenity is also already pre-counted in *processed_data.csv*. The
+supporting *R* code is compute-heavy and therefore can be found in the
+`Additional Codes` section.
+
+**LLaMA text and sentiment analysis**
+
+Initially, I locally ran the LLAMA 3.2, which is a 3 billion parameters,
+open-access LLM with high performance across competitive lightweight models
+([@llama_guard2024] via [Hugging
+Face](https://huggingface.co/meta-llama/Llama-3.2-1B)). However, initial
+verification of the `host_gender` classification reveals the model is
+substantially skewed towards assigning female gender to typically male names,
+e.g. the name 'Boris' is sometimes classified as `Male` and sometimes as
+`Female`. The data is highly corrupted and is not incorporated into final
+research - similarly for the `description` variable. Therefore, I deploy the
+`Gender-Predictor` library - Python script available in `Additional Codes`
+
+Despite these issues, future research should incorporate text analysis - perhaps
+with more accurate models and greater infrastructure, to extract additional
+information. Sentiment and text analyses should also be performed for the
+available `reviews.csv` and then merged with listings.csv through the ID
+variable. However the sheer scale of the dataset (1 048 576 text-based
+observations) and this project's limited infrastructure make this goal
+unfeasible. Not incorporating users' reviews is partially accounted for by the
+available `ratings` scores, which reflect individual reviews in an aggregate and
+uniform form.
+
+**Geolocation data**
+
+London is a major metropolitan area lacking a standard 'city center'. Therefore
+I decide to drop the latitude and longitude data, as other variables cover for
+geographic attractiveness of specific listing: `Neighbourhood` Dummy Variables,
+`num_stations_nearby` , `num_museums` , `Fnum_nightclubs`. Future analysis
+should incorporate k-clustering with lat/long data.
+
+### Final Variables table
+
+| Variable                                     | Unique |
+|----------------------------------------------|--------|
+| host_how_long                                | 4901   |
+| host_response_time                           | 4      |
+| host_response_rate                           | 85     |
+| host_acceptance_rate                         | 101    |
+| host_is_superhost                            | 2      |
+| host_total_listings_count                    | 176    |
+| host_has_profile_pic                         | 2      |
+| host_identity_verified                       | 2      |
+| accommodates                                 | 16     |
+| bathrooms                                    | 20     |
+| bedrooms                                     | 12     |
+| beds                                         | 23     |
+| price                                        | 901    |
+| minimum_nights                               | 87     |
+| maximum_nights                               | 241    |
+| minimum_nights_avg_ntm                       | 682    |
+| maximum_nights_avg_ntm                       | 1552   |
+| has_availability                             | 2      |
+| availability_60                              | 61     |
+| number_of_reviews                            | 524    |
+| review_scores_rating                         | 176    |
+| instant_bookable                             | 2      |
+| calculated_host_listings_count               | 88     |
+| calculated_host_listings_count_entire_homes  | 85     |
+| calculated_host_listings_count_private_rooms | 39     |
+| calculated_host_listings_count_shared_rooms  | 10     |
+| reviews_per_month                            | 906    |
+| num_stations_nearby                          | 6      |
+| num_museums                                  | 33     |
+| num_nightclubs                               | 26     |
+| has_wifi                                     | 2      |
+| has_tv                                       | 2      |
+| has_parking                                  | 2      |
+| safety_index                                 | 4      |
+| kitchen_index                                | 10     |
+| essentials_index                             | 8      |
+| Host_gender                                  | 4      |
+| shared_bathroom                              | 2      |
+
+| Dummy Variables                               | Max |
+|-----------------------------------------------|-----|
+| neighbourhood_cleansed_Barking.and.Dagenham   | 2   |
+| neighbourhood_cleansed_Barnet                 | 2   |
+| neighbourhood_cleansed_Bexley                 | 2   |
+| neighbourhood_cleansed_Brent                  | 2   |
+| neighbourhood_cleansed_Bromley                | 2   |
+| neighbourhood_cleansed_Camden                 | 2   |
+| neighbourhood_cleansed_City.of.London         | 2   |
+| neighbourhood_cleansed_Croydon                | 2   |
+| neighbourhood_cleansed_Ealing                 | 2   |
+| neighbourhood_cleansed_Enfield                | 2   |
+| neighbourhood_cleansed_Greenwich              | 2   |
+| neighbourhood_cleansed_Hackney                | 2   |
+| neighbourhood_cleansed_Hammersmith.and.Fulham | 2   |
+| neighbourhood_cleansed_Haringey               | 2   |
+| neighbourhood_cleansed_Harrow                 | 2   |
+| neighbourhood_cleansed_Havering               | 2   |
+| neighbourhood_cleansed_Hillingdon             | 2   |
+| neighbourhood_cleansed_Hounslow               | 2   |
+| neighbourhood_cleansed_Islington              | 2   |
+| neighbourhood_cleansed_Kensington.and.Chelsea | 2   |
+| neighbourhood_cleansed_Kingston.upon.Thames   | 2   |
+| neighbourhood_cleansed_Lambeth                | 2   |
+| neighbourhood_cleansed_Lewisham               | 2   |
+| neighbourhood_cleansed_Merton                 | 2   |
+| neighbourhood_cleansed_Newham                 | 2   |
+| neighbourhood_cleansed_Redbridge              | 2   |
+| neighbourhood_cleansed_Richmond.upon.Thames   | 2   |
+| neighbourhood_cleansed_Southwark              | 2   |
+| neighbourhood_cleansed_Sutton                 | 2   |
+| neighbourhood_cleansed_Tower.Hamlets          | 2   |
+| neighbourhood_cleansed_Waltham.Forest         | 2   |
+| neighbourhood_cleansed_Wandsworth             | 2   |
+| neighbourhood_cleansed_Westminster            | 2   |
+| property_category_Apartment.Condo             | 2   |
+| property_category_House.Townhouse             | 2   |
+| property_category_Guesthouse.B.B              | 2   |
+| property_category_Villa                       | 2   |
+| property_category_Cabin.Cottage               | 2   |
+| property_category_Unique.Stay                 | 2   |
+| property_category_Farm.Stay.Rural             | 2   |
+| property_category_Hotel.Hostel                | 2   |
+| property_category_Shared.Communal.Stay        | 2   |
+| property_category_Traditional.Homes           | 2   |
+| property_category_Other                       | 2   |
+| room_Entire.home.apt                          | 2   |
+| room_Hotel.room                               | 2   |
+| room_Private.room                             | 2   |
+| room_Shared.room                              | 2   |
+
+## R code:
+
+The main *R* code is divided into two sections: *Data Cleaning*, *Main
+Analysis*, and subdivided into specific parts:
+
+### Data Cleaning and Merging
+
+```{r Initial-Cleaning}
+# Initial cleaning  ----------------------------------
+library(fastDummies)
+library(dplyr)
+library(readr)
+library(tensorflow)
+library(caTools)
+library(stringr)
+library(lubridate)
+library(ipred)
+
+# Loading the initial dataset
+df <- read.csv("listings.csv", stringsAsFactors = FALSE)
+
+# For computational efficiency I first remove 32368 observations of NA values for 'prices' and convert to numericals
+df$price[df$price == ""] <- NA
+df <- df[!is.na(df$price), ]
+na_count <- sum(is.na(df$price))
+cat("Number of NA values in 'price':", na_count, "\n")
+str(df$price) # How many NA's for 'price'
+df$price <- as.numeric(gsub("[\\$,]", "", df$price))
+
+# NAs check ------------------------
+# Some of the next steps are compute heavy or require external data manipulations, therefore
+# for efficient computing, I remove all missing variables (but first need to identify them)
+
+# Counting final NA values per variable
+count_na <- function(df) {
+  na_counts <- colSums(is.na(df))  # Count NAs in each column
+  na_percent <- (na_counts / nrow(df)) * 100  # Percentages
+  
+  # Separete data frame for NA counts
+  na_summary <- data.frame(
+    Variable = names(na_counts),
+    NA_Count = na_counts,
+    NA_Percentage = na_percent
+  )
+  
+  # Filter and sorting
+  na_summary <- na_summary %>%
+    filter(NA_Count > 0) %>%
+    arrange(desc(NA_Count))
+  return(na_summary)
+}
+na_results <- count_na(df)
+print(na_results)
+
+# There are 14528 missing reviews_ratings of listings which are dropped. Empty columns are removed afterwards
+df <- df[!is.na(df$review_scores_checkin), ]
+
+# Converting binary variables
+binary_columns <- c("host_is_superhost", "host_has_profile_pic", "host_identity_verified", "has_availability", "instant_bookable")
+df[binary_columns] <- lapply(df[binary_columns], function(x) ifelse(x == "t", 1, 0))
+```
+
+```{r Numericals-Conversion}
+# Hosts Processing  ----------------------------------
+
+# Converting "host_response_time" to numeric
+response_time_mapping <- c(
+  "N/A" = 0,
+  "within an hour" = 1,
+  "within a few hours" = 2,
+  "within a day" = 3,
+  "a few days or more" = 4
+)
+
+df$host_response_time <- as.numeric(response_time_mapping[df$host_response_time])
+df$host_response_rate[is.na(df$host_response_rate)] <- 0 #cover for NA values which represent 0
+df$host_acceptance_rate[is.na(df$host_acceptance_rate)] <- 0
+
+# Converting percentage based variables
+df <- df %>%
+  mutate(
+    host_response_rate = as.numeric(gsub("%", "", host_response_rate)),
+    host_acceptance_rate = as.numeric(gsub("%", "", host_acceptance_rate))
+  )
+
+# Convert "host_verifications" to numericals
+df$host_verifications[df$host_verifications %in% c("[]", "None")] <- 0
+df$host_verifications <- as.character(df$host_verifications)
+verification_types <- c("phone", "email", "work_email")
+check_verification <- function(verifications_str, verification) {
+  grepl(paste0("\\b", verification, "\\b"), verifications_str, ignore.case = TRUE)
+}
+
+# Count number of verification
+df$host_verifications <- rowSums(sapply(verification_types, function(verification) {
+  sapply(df$host_verifications, function(x) as.integer(check_verification(x, verification)))
+}))
+
+# Property Types  ----------------------------------
+
+# Converting neighbourhoods based on Airbnb classifications in neighbourhoods.csv
+neighbourhoods <- c(
+  "Barking and Dagenham", "Barnet", "Bexley", "Brent", "Bromley",
+  "Camden", "City of London", "Croydon", "Ealing", "Enfield",
+  "Greenwich", "Hackney", "Hammersmith and Fulham", "Haringey",
+  "Harrow", "Havering", "Hillingdon", "Hounslow", "Islington",
+  "Kensington and Chelsea", "Kingston upon Thames", "Lambeth",
+  "Lewisham", "Merton", "Newham", "Redbridge", "Richmond upon Thames",
+  "Southwark", "Sutton", "Tower Hamlets", "Waltham Forest",
+  "Wandsworth", "Westminster"
+)
+
+df$neighbourhood_cleansed <- factor(
+  df$neighbourhood_cleansed,  # Keep original text values
+  levels = neighbourhoods      # Force all 33 levels
+)
+
+# Generate dummy variables for all neighbourhoods
+df <- dummy_cols(
+  df,
+  select_columns = "neighbourhood_cleansed",
+  remove_selected_columns = TRUE  # Drops the original column
+)
+ 
+library(fastDummies)
+
+# 1. First, categorize property types (your original mapping code)
+property_mapping <- list(
+  "Apartment/Condo" = c("Entire rental unit", "Entire condo", "Room in aparthotel", 
+                        "Private room in condo", "Entire serviced apartment", "Room in serviced apartment", 
+                        "Shared room in condo", "Entire loft", "Private room in loft"),
+  
+  "House/Townhouse" = c("Entire home", "Entire townhouse", "Private room in townhouse", 
+                        "Private room in home", "Private room in rental unit", 
+                        "Private room in guest suite", "Shared room in townhouse"),
+  
+  "Guesthouse/B&B" = c("Private room in guesthouse", "Entire guesthouse", "Entire guest suite",
+                       "Room in bed and breakfast", "Private room in bed and breakfast", "Shared room in guesthouse"),
+  
+  "Villa" = c("Entire villa", "Private room in villa", "Shared room in villa"),
+  
+  "Cabin/Cottage" = c("Entire cabin", "Private room in cabin", "Entire cottage", 
+                      "Private room in cottage", "Private room in tiny home", "Tiny home"),
+  
+  "Unique Stay" = c("Houseboat", "Private room in houseboat", "Boat", "Private room in boat", 
+                    "Shipping container", "Private room in shipping container", "Dome", "Hut", 
+                    "Private room in hut", "Private room in shepherd's hut", "Shepherd's hut", 
+                    "Private room in treehouse", "Private room in lighthouse", "Lighthouse", 
+                    "Earthen home", "Private room in earthen home"),
+  
+  "Farm Stay/Rural" = c("Farm stay", "Private room in farm stay", "Shared room in farm stay",
+                        "Barn", "Castle", "Religious building", "Private room in religious building", 
+                        "Tower", "Campsite", "Tent", "Private room in nature lodge"),
+  
+  "Hotel/Hostel" = c("Room in hotel", "Room in boutique hotel", "Shared room in boutique hotel", 
+                     "Room in hostel", "Private room in hostel", "Shared room in hostel", 
+                     "Shared room in hotel"),
+  
+  "Shared/Communal Stay" = c("Shared room", "Shared room in rental unit", "Shared room in serviced apartment",
+                             "Shared room in vacation home", "Shared room in bed and breakfast",
+                             "Shared room in guest suite", "Shared room in bungalow", "Shared room in bus"),
+  
+  "Traditional Homes" = c("Cycladic home", "Casa particular", "Minsu", "Private room in casa particular", 
+                          "Riad", "Island", "Private room in island")
+)
+
+# 2. Create the mapping and apply categories
+property_category_map <- unlist(lapply(names(property_mapping), function(category) {
+  setNames(rep(category, length(property_mapping[[category]])), property_mapping[[category]])
+}))
+
+df$property_category <- property_category_map[df$property_type]
+df$property_category[is.na(df$property_category)] <- "Other"
+
+# 3. Convert to factor with all possible levels (including "Other")
+df$property_category <- factor(df$property_category, 
+                               levels = c(names(property_mapping), "Other"))
+
+# 4. Create dummy variables using fastDummies
+df <- dummy_cols(
+  df,
+  select_columns = "property_category",
+  remove_first_dummy = FALSE,  # Keep all categories
+  remove_selected_columns = FALSE  # Keep original column (optional)
+)
+
+# rm(property_mapping)
+
+# 1. Directly create dummy variables from original room_type text column
+df <- dummy_cols(
+  df,
+  select_columns = "room_type",
+  remove_first_dummy = FALSE,  # Keep all categories
+  remove_selected_columns = FALSE  # Keep original column (set TRUE to remove)
+)
+
+# 2. (Optional) Clean dummy column names
+names(df) <- gsub("room_type_", "room_", names(df))
+
+# Converting types of bathroom if shared or private
+df <- df %>%
+  mutate(shared_bathroom = ifelse(grepl("shared", tolower(bathrooms_text)), 1, 0))
+df$reviews_per_month[is.na(df$reviews_per_month)] <- 0
+```
+
+```{r Principle-Component-Analysis}
+# PCA analysis ----------
+
+# Availability:
+library(ggplot2)
+availability_data <- df[, c("availability_30", "availability_60", "availability_90", "availability_365")]
+availability_scaled <- scale(availability_data) #scale
+pca_result <- prcomp(availability_scaled, center = TRUE, scale. = TRUE) # running PCA
+summary(pca_result)
+
+# Loading the rotation matrix:
+# print(pca_result$rotation) # no need in final analysis
+pc1_loadings <- pca_result$rotation[, 1]
+# print(pc1_loadings)
+loadings <- pca_result$rotation
+for (i in 1:4) {
+  pc_loadings <- loadings[, i]
+  important_var <- names(which.max(abs(pc_loadings)))
+  direction <- ifelse(pc_loadings[which.max(abs(pc_loadings))] > 0, "positive", "negative")}
+  
+# print(paste("PC", i, "is most strongly associated with:", important_var, "(", direction, "relationship )"))
+
+# Identyfying PC1
+important_var <- names(which.max(abs(pc1_loadings)))
+print(paste("Variable with highest contribution to PC1:", important_var))
+
+# Elbow Graph
+pca_var <- pca_result$sdev^2
+pca_var_exp <- pca_var / sum(pca_var) * 100  # Converting to percentage
+elbow_plot <- data.frame(PC = seq_along(pca_var_exp), Variance_Explained = pca_var_exp)
+
+ggplot(elbow_plot, aes(x = PC, y = Variance_Explained)) +
+  geom_point(size = 3) + 
+  geom_line() +
+  ggtitle("PCA Elbow Graph for 'has_availibility' variables ") +
+  xlab("Principal Component") +
+  ylab("Variance Explained (%)") +
+  theme_minimal()
+
+# Specific percenteges:
+variance <- pca_result$sdev^2
+prop_variance <- variance / sum(variance) * 100
+
+print("Variance by each principal component:")
+for (i in 1:4) {
+  print(paste("PC", i, "explains", round(prop_variance[i], 2), "% of total variance"))
+}
+
+# Ratings PCA:
+# Only after removing NA values for reviews_rating I can perform the second PCA:
+library(ggplot2)
+
+review_data <- df[, c("review_scores_rating", "review_scores_accuracy", "review_scores_cleanliness", "review_scores_checkin",
+                      "review_scores_communication", "review_scores_location", "review_scores_value")]
+
+review_scaled <- scale(review_data) #scale
+pca_result2 <- prcomp(review_scaled, center = TRUE, scale. = TRUE) # running PCA
+summary(pca_result2)
+
+# Loadings (rotation matrix):
+# print(pca_result2$rotation) no need to print in final file
+pc1_loadings <- pca_result2$rotation[, 1]
+# print(pc1_loadings) no need to print in final file
+loadings <- pca_result2$rotation
+for (i in 1:7) {
+  pc_loadings <- loadings[, i]
+  important_var <- names(which.max(abs(pc_loadings)))
+  direction <- ifelse(pc_loadings[which.max(abs(pc_loadings))] > 0, "positive", "negative")}
+  
+  # print(paste("PC", i, "is most strongly associated with:", important_var, "(", direction, "relationship )"))
+
+# Identyfying PC1 for reviews_rating
+important_var <- names(which.max(abs(pc1_loadings)))
+print(paste("Variable with highest contribution to PC1:", important_var))
+
+# Elbow Graph
+pca_var <- pca_result2$sdev^2
+pca_var_exp <- pca_var / sum(pca_var) * 100  # Converting to percentage
+elbow_plot <- data.frame(PC = seq_along(pca_var_exp), Variance_Explained = pca_var_exp)
+
+ggplot(elbow_plot, aes(x = PC, y = Variance_Explained)) +
+  geom_point(size = 3) + 
+  geom_line() +
+  ggtitle("PCA Elbow Graph for 'review_ratings' variables ") +
+  xlab("Principal Component") +
+  ylab("Variance Explained (%)") +
+  theme_minimal()
+
+# Specific percenteges:
+variance <- pca_result2$sdev^2
+prop_variance <- variance / sum(variance) * 100
+
+print("Variance by each principal component:")
+for (i in 1:7) {
+  print(paste("PC", i, "explains", round(prop_variance[i], 2), "% of total variance"))
+}
+```
+
+```{r External-Data-Incorporation}
+# Underground Stations ----------------------------------
+
+# install.packages('geosphere') # install if needed
+library(geosphere) # is this necessary in the end?
+
+# Loading London Stations datasets 
+stations <- read.csv("London Stations.csv")
+
+# Defining arbitrary search radius in meters
+radius_meters <- 500
+
+# Counting nearby stations for a given house
+count_nearby_stations <- function(latitude, longitude, stations, radius_meters) {
+  distances <- distHaversine(
+    matrix(c(stations$station_long, stations$station_lat), ncol = 2),
+    c(longitude, latitude)
+  )
+  sum(distances <= radius_meters)
+}
+
+# Computing the number of stations near each house
+df$num_stations_nearby <- mapply(count_nearby_stations, 
+                                 df$latitude, 
+                                 df$longitude, 
+                                 MoreArgs = list(stations = stations, radius_meters = radius_meters))
+
+# Cultural Sites ----------------------------------
+
+sites <- read.csv("CIM 2023 Museums and Nightclubs (Nov 2023).csv")
+radius_meters <- 1000
+
+# Counting nearby sites based on category
+count_nearby_sites <- function(latitude, longitude, sites, category, radius_meters) {
+  filtered_sites <- sites[sites$category == category, ]  # Filter by category
+  
+  if (nrow(filtered_sites) == 0) return(0)  # If no sites of that type exist, return 0
+  
+  distances <- distHaversine(
+    matrix(c(filtered_sites$cim_longitude, filtered_sites$cim_latitude), ncol = 2),
+    c(longitude, latitude)
+  )
+  sum(distances <= radius_meters)
+}
+
+# Computing the number of museums and nightclubs near each house
+df$num_museums <- mapply(count_nearby_sites, 
+                         df$latitude, 
+                         df$longitude, 
+                         MoreArgs = list(sites = sites, category = "museum", radius_meters = radius_meters))
+
+df$num_nightclubs <- mapply(count_nearby_sites, 
+                            df$latitude, 
+                            df$longitude, 
+                            MoreArgs = list(sites = sites, category = "nightclub", radius_meters = radius_meters))
+```
+
+```{r Text-based-variables-cleaning}
+# TEXT CLEANING ------------------------
+df <- df %>%
+  select(-c(
+    listing_url, scrape_id, last_scraped, source, picture_url, host_location, host_about, host_listings_count,
+    host_url, host_id, host_thumbnail_url, host_picture_url, # Removing host-related variables
+    host_neighbourhood, calendar_last_scraped, neighbourhood, # These variables are often omitted
+    neighbourhood_group_cleansed, license, calendar_updated,
+    number_of_reviews_ltm, number_of_reviews_l30d,
+    minimum_minimum_nights,	maximum_minimum_nights,	minimum_maximum_nights,	maximum_maximum_nights,
+    availability_30, availability_90, availability_365,
+    host_verifications, property_type, property_category, # not useful anymore 
+    latitude, longitude,  # Note: Be cautious if you need these for spatial analysis
+    first_review, last_review, host_since # already covered
+  ))
+```
+
+```{r Amenities}
+# Amenities ------------------------
+
+# Original code to identify twenty most popular amenities:
+# listings$amenities <- as.character(listings$amenities)
+# amenities_list <- strsplit(listings$amenities, ",") # Split the amenities into list
+# amenities_list <- lapply(amenities_list, function(x) trimws(gsub('[\"\\[\\]]', '', x))) # Clean names
+# amenity_counts <- table(unlist(amenities_list)) %>% sort(decreasing = TRUE) # Counting and sorting occurrences of each unique amenity
+# n <- 20 # Seting the number for most common amenities
+# top_amenities <- names(amenity_counts)[1:n]
+# amenities_df <- as.data.frame(matrix(0, nrow = nrow(listings), ncol = n))
+# colnames(amenities_df) <- top_amenities # implementing into the DF
+# for (i in seq_along(amenities_list)) {
+#  amenities_df[i, top_amenities %in% amenities_list[[i]]] <- 1
+# } # Populating the dataframe
+# df <- cbind(listings, amenities_df) # combining with df
+
+df$amenities <- as.character(df$amenities)
+amenity_categories <- c("Kitchen", "Smoke alarm", "Washer", "Iron", "Hangers", 
+                        "Hot water", "Carbon monoxide alarm", "Dryer", "Heating", 
+                        "Wifi", "Essentials", "Bed linens", "TV", "Refrigerator", 
+                        "Dishes and silverware", "Shampoo", "Cooking basics", 
+                        "Microwave", "Hot water kettle", "Oven", "Parking") 
+#Safety index:
+safety_amenities <- c("Fire extinguisher", "Smoke alarm", "Carbon monoxide alarm")
+check_amenity <- function(amenities_str, amenity) {
+  grepl(paste0("\\b", amenity, "\\b"), amenities_str, ignore.case = TRUE)
+}
+
+#Kitchen index
+kitchen_amenities <- c("Kitchen", "Washer", "Hot water", "Hot water kettle", "Oven",
+                       "Cooking basics", "Refrigerator",  "Dishes and silverware", "Microwave")
+check_amenity <- function(amenities_str, amenity) {
+  grepl(paste0("\\b", amenity, "\\b"), amenities_str, ignore.case = TRUE)
+}
+
+# Essentials index
+essentials_amenities <- c("Essentials", "Heating", "Bed linens", "Iron", "Shampoo", "Dryer", "Hangers")
+check_amenity <- function(amenities_str, amenity) {
+  grepl(paste0("\\b", amenity, "\\b"), amenities_str, ignore.case = TRUE)
+}
+
+# Binary columns for each amenity
+for (amenity in amenity_categories) {
+  col_name <- paste0("has_", gsub(" ", "_", tolower(amenity)))
+  df[[col_name]] <- as.integer(sapply(df$amenities, function(x) check_amenity(x, amenity)))
+}
+
+#Each index is counted for how many of the safety amenities are present
+# Safety index
+df$safety_index <- rowSums(sapply(safety_amenities, function(amenity) {
+  sapply(df$amenities, function(x) as.integer(check_amenity(x, amenity)))
+}))
+
+# Kitchen index
+df$kitchen_index <- rowSums(sapply(kitchen_amenities, function(amenity) {
+  sapply(df$amenities, function(x) as.integer(check_amenity(x, amenity)))
+}))
+
+# Essentials index
+df$essentials_index <- rowSums(sapply(essentials_amenities, function(amenity) {
+  sapply(df$amenities, function(x) as.integer(check_amenity(x, amenity)))
+}))
+```
+
+```{r Text-based-variables-cleaning 2}
+# 'Description' Analysis  ----------------------------------
+
+# Merging "name", "description", "neighborhood_overview" into single "combined_description"
+df <- df %>%
+  mutate(combined_description = paste(name, description, neighborhood_overview, sep = " "))
+
+#Additionally, for storage efficiency I remove the unnecessary df's:
+unnecessary_dfs <- c("availability_scaled", "availability_data", "review_scaled", "review_data", "pca_result", "pca_result2")
+rm(list = intersect(ls(), unnecessary_dfs))
+gc()
+
+df <- df %>%
+  select(-description, -neighborhood_overview, -name, -amenities, 
+         -has_smoke_alarm, -has_carbon_monoxide_alarm, -host_name, -bathrooms_text,
+         -has_kitchen, -has_washer, -has_hot_water, -has_hot_water_kettle, -has_oven,
+         -has_cooking_basics, -has_refrigerator, -has_dishes_and_silverware, -has_microwave, 
+         -has_essentials, -has_bed_linens, -has_iron, -has_shampoo, id, room_type,
+         -has_dryer, -has_hangers, -has_heating, -review_scores_accuracy, -review_scores_cleanliness, -review_scores_checkin,
+         -review_scores_communication, -review_scores_location, -review_scores_value) #removing after PCA
+
+# rewrite this properly using:
+#df <- df %>% select(-c())
+
+# Excluding the rest of missing cells (1000) 
+df <- na.omit(df)
+
+# The final df is saved into a second file, which is used for e.g. LLAMA text analysis
+write.csv(df, "Dummies_Data.csv", row.names = FALSE)
+
+# I proceed to deploy text analysis using LLaMA model for host_gender and combined_description information extraction
+# I run LLaMA locally in Python,
+# I then load the final dataset into the analysis:
+```
+
+### Main Analysis
+
+```{r Final-Data-Preparation}
+# Final Data Preparation ----------
+# load the packages
+library(caTools)
+library(caret)
+library(dplyr)
+library(doParallel)
+library(gbm)
+library(ggplot2)
+library(glmnet)
+library(ipred)
+library(keras)
+library(tensorflow)
+library(tinytex)
+library(lubridate)
+library(parallel)
+library(randomForest)
+library(ranger)
+library(rBayesianOptimization)
+library(readr)
+library(stringr)
+library(tensorflow)
+library(xgboost)
+
+#Read the file
+df_processed <- read.csv("Final_Data.csv", stringsAsFactors = FALSE)
+
+#Removing all remaining non-numerical variables and missing cells
+df_processed <- df_processed %>% select(-c(combined_description, room_type))
+df_processed <- na.omit(df_processed)
+sum(is.na(df_processed))
+```
+
+```{r Variables-Testing, echo=FALSE, results='asis'}
+# Table of variables for .RMD purposes
+variable_table <- data.frame(
+  Variable = names(df_processed),
+  Type = sapply(df_processed, class)  # Get the data type of each column
+)
+
+variable_table <- data.frame(
+  Variable = names(df_processed),
+  Type = sapply(df_processed, function(x) paste(class(x), collapse = ", ")),
+  Missing = sapply(df_processed, function(x) sum(is.na(x))),
+  Unique = sapply(df_processed, function(x) length(unique(x))),
+  stringsAsFactors = FALSE
+)
+
+ knitr::kable(variable_table, format = "latex", caption = "Variable Summary", booktabs = TRUE)
+```
+
+```{r Final-Data-Preparation 2}
+# The dataset is partially corrupted with overpriced listings (see Appendix)
+# Therefore I remove top and bottom 1% of outliers:
+
+# Calculate the 0.5th and 99.5th percentiles
+percentile_low <- quantile(df_processed$price, 0.005, na.rm = TRUE)
+percentile_high <- quantile(df_processed$price, 0.995, na.rm = TRUE)
+cat("0.5th percentile of price:", percentile_low, "\n")
+cat("99.5th percentile of price:", percentile_high, "\n")
+
+# How many observations were removed - confirming the numbers for internal purposes
+df_processed <- df_processed[df_processed$price >= percentile_low & df_processed$price <= percentile_high, ]
+cat("Number of observations after removing outliers:", nrow(df_processed), "\n")
+
+# Visualisation
+Price_distribution <- ggplot(df_processed, aes(x = price)) +
+  geom_histogram(bins = 30, fill = "lightgreen", color = "black") +
+  ggtitle("Price Distribution After Filtering") +
+  theme_minimal()
+print(Price_distribution)
+
+# I log the price variable (see Appendix)
+df_processed$price <- as.numeric(df_processed$price)
+df_processed$price <- log(df_processed$price)
+
+# Improving the speed of calculations:
+cores <- detectCores() - 1
+cl <- makeCluster(cores)  
+registerDoParallel(cl)    
+
+# Splitting into training and validation sets:
+set.seed(123)
+split <- sample.split(df_processed$price, SplitRatio = 0.8)
+training_set <- subset(df_processed, split == TRUE)
+validation_set <- subset(df_processed, split == FALSE)
+cat("Training set dimensions:", dim(training_set), "\n")
+cat("Validation set dimensions:", dim(validation_set), "\n")
+
+#Comparing the validation and training sets
+summary_stats <- function(data, dataset_name) {
+  data %>%
+    summarise(
+      Dataset = dataset_name,
+      Mean = mean(price, na.rm = TRUE),
+      Median = median(price, na.rm = TRUE),
+      Variance = var(price, na.rm = TRUE),
+      Std_Dev = sd(price, na.rm = TRUE),
+      Min = min(price, na.rm = TRUE),
+      Max = max(price, na.rm = TRUE),
+      Count = n()
+    )
+}
+
+train_stats <- summary_stats(training_set, "Training Set")
+valid_stats <- summary_stats(validation_set, "Validation Set")
+random_split_table <- bind_rows(train_stats, valid_stats)
+print(random_split_table)
+
+# Matrix Conversion for glmnet for L1, L2 and elastic:
+x_train <- model.matrix(price ~ ., training_set)[, -1]
+y_train <- training_set$price
+x_valid <- model.matrix(price ~ ., validation_set)[, -1]
+y_valid <- validation_set$price # exclude the 'price' !!!
+```
+
+```{r Lasso-Ridge-and-Elastic}
+# Lasso (L1) ------------------------
+set.seed(123)
+lasso_model <- glmnet(x_train, y_train, alpha = 1)  # alpha = 1 for Lasso
+
+# Cross-validation to find 'optimal' lambda, testing on validation set
+cv_lasso <- cv.glmnet(x_train, y_train, nfolds = 10, alpha = 1)
+best_lambda_lasso <- cv_lasso$lambda.min
+lasso_train_pred <- predict(lasso_model, s = best_lambda_lasso, newx = x_train)
+lasso_valid_pred <- predict(cv_lasso, s = best_lambda_lasso, newx = x_valid)
+
+# RMSE and R²
+rmse_valid_lasso <- sqrt(mean((y_valid - lasso_valid_pred)^2))
+rmse_train_lasso <- sqrt(mean((y_train - lasso_train_pred)^2))
+ss_total <- sum((validation_set$price - mean(validation_set$price))^2)  # TSS
+lasso_ss_residual <- sum((validation_set$price - lasso_valid_pred)^2)   # RSS
+r_squared_lasso <- 1 - (lasso_ss_residual / ss_total) # R²
+cat("Lasso Valis RMSE:", rmse_valid_lasso, "\n")
+cat("Lasso Train RMSE:", rmse_train_lasso, "\n")
+cat("Lasso R²:", r_squared_lasso, "%\n")
+
+# Print important variables (non-zero coefficients)
+ lasso_coef <- coef(lasso_model, s = best_lambda_lasso)
+# lasso_coef[lasso_coef != 0] # no need in final analysis
+
+# Ridge (L2) --------------------
+set.seed(123)
+ridge_model <- glmnet(x_train, y_train, alpha = 0) # alpha = 0 for Ridge
+
+# Cross-validation to find 'optimal' lambda, testing on validation set
+#	cv.glmnet performs automatic k-fold cross-validation with default k=10, I change it to 5 for comparison with other models
+cv_ridge <- cv.glmnet(x_train, y_train, nfolds = 10, alpha = 0)
+best_lambda_ridge <- cv_ridge$lambda.min
+ridge_train_pred <- predict(ridge_model, s = best_lambda_ridge, newx = x_train)
+ridge_valid_pred <- predict(cv_ridge, s = best_lambda_ridge, newx = x_valid)
+
+# RMSE and R²
+rmse_valid_ridge <- sqrt(mean((y_valid - ridge_valid_pred)^2))
+rmse_train_ridge <- sqrt(mean((y_train - ridge_train_pred)^2))
+ridge_ss_residual <- sum((validation_set$price - ridge_valid_pred)^2)   # RSS
+r_squared_ridge <- 1 - (ridge_ss_residual / ss_total) # R²
+cat("Ridge Valid RMSE:", rmse_valid_ridge, "\n")
+cat("Ridge Train RMSE:", rmse_train_ridge, "\n")
+cat("Ridge Train R²:", r_squared_ridge, "%\n")
+
+# Elastic Net (L1 + L2) -----
+set.seed(123)
+elastic_net_model <- glmnet(x_train, y_train, alpha = 0.5)  # Alpha = 0.5 for Elastic Net
+
+# Cross-validation to find 'optimal' lambda, testing on validation set
+cv_elastic <- cv.glmnet(x_train, y_train, nfolds = 10, alpha = 0.5)
+best_lambda_elastic <- cv_elastic$lambda.min
+elastic_train_pred <- predict(elastic_net_model, s = best_lambda_elastic, newx = x_train)
+elastic_valid_pred <- predict(cv_elastic, s = best_lambda_elastic, newx = x_valid)
+
+# RMSE and R²
+rmse_valid_elastic <- sqrt(mean((y_valid - elastic_valid_pred)^2))
+rmse_train_elastic <- sqrt(mean((y_train - elastic_train_pred)^2))
+elastic_ss_residual <- sum((validation_set$price - elastic_valid_pred)^2) # RSS
+r_squared_elastic <- 1 - (elastic_ss_residual / ss_total) # R²
+
+cat("Elastic Valis RMSE:", rmse_valid_elastic, "\n")
+cat("Elastic Train RMSE:", rmse_train_elastic, "\n")
+cat("Elastic R²:", r_squared_elastic, "%\n")
+```
+
+```{r Bagging, eval=FALSE}
+# Bagging -----------------
+# Compute heavy hence eval=FALSE
+
+library(ranger)
+set.seed(123)
+
+# Cross-validation
+control <- trainControl(
+  method = "cv",
+  number = 10,
+  verboseIter = FALSE,
+  allowParallel = TRUE
+)
+
+# Tuning grid, ranger requires splitrule and min.node.size therefore:
+grid <- expand.grid(
+  mtry = floor(ncol(training_set) / 3),  # searching for optimal number of variables at splitting
+  splitrule = "variance",   # we minimise variance (but introduce bias)
+  min.node.size = c(1, 5)  # Optimal node size tuning
+)
+
+#magical mtry value: http://machinelearning202.pbworks.com/w/file/fetch/60606349/breiman_randomforests.pdf
+
+# Bagging training
+bagging_model <- caret::train( # overriding caret, sometimes it conflicts with other packages...
+  price ~ .,  
+  data = training_set,  
+  method = "ranger",
+  trControl = control,
+  tuneGrid = grid,
+  ntree = 100,  # 'ranger' does not offer early stopping but it can be achieved through smaller number of trees
+  importance = 'impurity',  # ensures feature importance calculation
+)
+
+# Print best tuned hyperparameters and features
+print(bagging_model$bestTune)
+importance <- varImp(bagging_model, scale = FALSE)
+# print(importance)  # Identify least important features and remove
+
+importance_plot <- ggplot(importance,
+  top = 10,
+  measure = "Gain",
+  rel_to_first = TRUE
+) +
+  ggtitle("Bagging Feature Importance (Gain)") + # the importance of each feature relative to the top feature (bedrooms)
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+print(importance_plot)
+
+# Predictions on training and validation set
+bagging_train_pred <- predict(bagging_model, newdata = training_set)
+bagging_valid_pred <- predict(bagging_model, newdata = validation_set)
+
+# RMSE and R² calculation for both training and validation sets
+rmse_train_bagging <- sqrt(mean((training_set$price - bagging_train_pred)^2))
+rmse_valid_bagging <- sqrt(mean((validation_set$price - bagging_valid_pred)^2))
+bagging_ss_residual <- sum((validation_set$price - bagging_valid_pred)^2) # RSS
+r_squared_bagging <- 1 - (bagging_ss_residual / ss_total) # R²
+cat("Training RMSE:", rmse_train_bagging, "\n")
+cat("Validation RMSE:", rmse_valid_bagging, "\n")
+cat("R²:", r_squared_bagging, "\n")
+
+# Combine actual vs predicted values for plotting
+plot_data <- data.frame(
+  Actual = exp(c(training_set$price, validation_set$price)),
+  Predicted = exp(c(bagging_train_pred, bagging_valid_pred)),
+  Dataset = rep(c("Training", "Validation"), c(nrow(training_set), nrow(validation_set)))
+)
+
+# Plot actual vs predicted values
+ggplot(plot_data, aes(x = Actual, y = Predicted, color = Dataset)) +
+  geom_point(alpha = 0.6, size = 2) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black") +
+  theme_minimal() +
+  labs(
+    title = "Bagging Model Performance",
+    subtitle = paste("Log Training RMSE:", round(rmse_train_bagging, 2), "| Log Validation RMSE:", round(rmse_valid_bagging, 2), "| R²:", round(r_squared_bagging, 2)),
+    x = "Actual Price",
+    y = "Predicted Price",
+    color = "Dataset"
+  ) +
+  scale_color_manual(values = c("blue", "red")) +
+  theme(legend.position = "top") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r Boosting, eval=FALSE}
+# Boosting  ------------------------
+
+# maximum number of trees is set to 200 for all models. CV ensures optimal number of trees
+set.seed(123)
+boosting_model <- gbm(price ~ ., data = training_set, distribution = "gaussian", 
+                      n.trees = 250, interaction.depth = 5, shrinkage = 0.01, 
+                      cv.folds = 10, n.cores = NULL, verbose = FALSE)
+
+best_iter <- gbm.perf(boosting_model, method = "cv", plot.it = FALSE)
+cat("Optimal number of trees:", best_iter, "\n")
+
+# Generate predictions for training set
+boosting_train_pred <- predict(boosting_model, 
+                               newdata = training_set, 
+                               n.trees = best_iter)
+
+boosting_valid_pred <- predict(boosting_model,
+                               newdata = validation_set,
+                               n.trees = best_iter)
+
+# I want to compare the perforemence between training and validation models:
+
+# RMSE and R²
+rmse_valid_boosting <- sqrt(mean((validation_set$price - boosting_valid_pred)^2))
+rmse_train_boosting <- sqrt(mean(training_set$price - boosting_train_pred)^2)
+boosting_ss_residual <- sum((validation_set$price - boosting_valid_pred)^2) # RSS
+r_squared_boosting <- 1 - (boosting_ss_residual / ss_total) # R²
+cat("Boosting training RMSE:", rmse_train_boosting, "\n")
+cat("Boosting validation RMSE:", rmse_valid_boosting, "\n")
+cat("Boosting training R²:", r_squared_boosting, "%\n")
+
+# Plotting
+plot_data <- data.frame(
+  Actual = exp(c(training_set$price, validation_set$price)),
+  Predicted = exp(c(boosting_train_pred, boosting_valid_pred)),
+  Dataset = rep(c("Training", "Validation"), c(nrow(training_set), nrow(validation_set)))
+)
+
+ggplot(plot_data, aes(x = Actual, y = Predicted, color = Dataset)) +
+  geom_point(alpha = 0.6, size = 2) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black") +
+  theme_minimal() +
+  labs(
+    title = "Boosting Model Performance",
+    subtitle = paste("Log Training RMSE:", round(rmse_train_boosting, 2), "| Log Validation RMSE:", round(rmse_valid_boosting, 2), "| R²:", round(r_squared_boosting, 2)),
+    x = "Actual Price",
+    y = "Predicted Price",
+    color = "Dataset"
+  ) +
+  scale_color_manual(values = c("blue", "red")) +
+  theme(legend.position = "top") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r Random-Forest, eval=FALSE}
+# Random Forest ------------
+
+set.seed(123)
+# Cross validation
+control <- trainControl(
+  method = "cv",           
+  number = 10,              # k = 5
+  verboseIter = FALSE,      # Print progress during training
+  allowParallel = TRUE     # Allow parallel processing if applicable
+)
+
+# Define the grid of hyperparameters to tune
+grid <- expand.grid(
+  mtry = floor((ncol(training_set)-1)/3), # magic paper
+  splitrule = "variance",   # we minimise variance (but introduce bias)
+  min.node.size = c(1, 5))  # Optimal node size tuning --> equal to bagging for comparison
+
+# Train the Random Forest model using caret with cross-validation
+rf_model <- caret::train(
+  price ~ .,  
+  data = training_set,  
+  method = "ranger",           # Random Forest
+  trControl = control,     # Cross-validation control
+  tuneGrid = grid,         # Grid of hyperparameters to tune
+  num.trees = 250,             # no of trees
+  importance = "impurity"        # Track feature importance
+)
+
+# Print optimal hyperparameters: mtry and ntree
+print(rf_model$bestTune)
+
+# Testing for validation set
+rf_train_pred <- predict(rf_model, newdata = training_set)
+rf_valid_pred <- predict(rf_model, newdata = validation_set)
+
+# RMSE and R² for validation and training sets
+rmse_valid_rf <- sqrt(mean((validation_set$price - rf_valid_pred)^2))
+rmse_train_rf <- sqrt(mean((training_set$price - rf_train_pred)^2))
+rf_ss_residual <- sum((validation_set$price - rf_valid_pred)^2) # RSS
+r_squared_rf <- 1 - (rf_ss_residual / ss_total) # R²
+cat("Random Forest Validation RMSE:", rmse_valid_rf, "\n")
+cat("Random Forest Training RMSE:", r_squared_rf, "\n")
+
+# Plotting
+plot_data <- data.frame(
+  Actual = exp(c(training_set$price, validation_set$price)),
+  Predicted = exp(c(rf_train_pred, rf_valid_pred)),
+  Dataset = rep(c("Training", "Validation"), c(nrow(training_set), nrow(validation_set)))
+)
+
+ggplot(plot_data, aes(x = Actual, y = Predicted, color = Dataset)) +
+  geom_point(alpha = 0.6, size = 2) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black") +
+  theme_minimal() +
+  labs(
+    title = "Random Forest Model Performance",
+    subtitle = paste("Log Training RMSE:", round(rmse_train_rf, 2), "| Log Validation RMSE:", round(rmse_valid_rf, 2), "| R²:", round(r_squared_rf, 2)),
+    x = "Actual Price",
+    y = "Predicted Price",
+    color = "Dataset"
+  ) +
+  scale_color_manual(values = c("blue", "red")) +
+  theme(legend.position = "top") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+#Testing residuals:
+plot_data$Residuals <- plot_data$Actual - plot_data$Predicted
+
+ggplot(plot_data, aes(x = Actual, y = Residuals, color = Dataset)) +
+  geom_point(alpha = 0.6, size = 2) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+  theme_minimal() +
+  labs(
+    title = "Residual Plot: Random Forest Model",
+    x = "Actual Price",
+    y = "Residuals (Actual - Predicted)",
+    color = "Dataset"
+  ) +
+  scale_color_manual(values = c("blue", "red")) +
+  theme(legend.position = "top")
+
+# Error distribution for Random Forest (Validation Set only):
+plot_data_valid <- subset(plot_data, Dataset == "Validation") # Filter data for validation set only
+histogram_plot <- ggplot(plot_data_valid, aes(x = Residuals, fill = Dataset)) +
+  geom_histogram(alpha = 0.5, binwidth = 10, position = "identity") +
+  theme_minimal() +
+  labs(
+    title = "Error Distribution: Random Forest Model (Validation Set)",
+    x = "Prediction Error (Residuals)",
+    y = "Count",
+    fill = "Dataset"
+  ) +
+  scale_fill_manual(values = c("red")) +
+  theme(legend.position = "top")
+print(histogram_plot) # remember to print
+
+# Checking for normality of errors:
+library(ggpubr)
+ggqqplot(plot_data$Residuals) +
+  theme_minimal() +
+  labs(title = "QQ Plot of Residuals for Random Forest", subtitle = "Checking Normality of Errors Distribution")
+
+# Density scatter plot (useless!)
+ggplot(plot_data, aes(x = Actual, y = Predicted)) +
+  geom_hex(bins = 35) +  # Hexbin density plot
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "white") +
+  scale_fill_viridis_c() +  # Nice gradient color
+  theme_minimal() +
+  labs(
+    title = "Model Performance: Actual vs. Predicted (Density View)",
+    x = "Actual Price",
+    y = "Predicted Price"
+  )
+```
+
+```{r XGBoost, eval=FALSE}
+# XGBoost: -----------
+
+set.seed(123)
+# Convert datasets to DMatrix format for XGBoost
+train_matrix <- as.matrix(training_set[, -which(names(training_set) == "price")])
+train_label <- training_set$price
+valid_matrix <- as.matrix(validation_set[, -which(names(validation_set) == "price")])
+valid_label <- validation_set$price
+
+dtrain <- xgb.DMatrix(data = train_matrix, label = train_label)
+dvalid <- xgb.DMatrix(data = valid_matrix, label = valid_label)
+
+# XGBoost parameters
+params <- list(
+  objective = "reg:squarederror", # regression problem therefore minimize the squared error
+  eta = 0.05, # learning rate = 0.05
+  max_depth = 10, # limiting complexity
+  subsample = 0.7, # avoiding overfitting
+  colsample_bytree = 0.7,
+  eval_metric = "rmse"
+)
+
+# Cross-validation with early stopping
+cv_results <- xgb.cv(
+  params = params,
+  data = dtrain,
+  nfold = 10,
+  nrounds = 250, # equal ntrees for all models
+  early_stopping_rounds = 50, # avoiding overfitting and computational complexity
+  verbose = 0 # 0 - no printing of progress
+)
+
+best_nrounds <- cv_results$best_iteration # choosing optimal hyperparameters
+cat("Best number of rounds:", best_nrounds, "\n")
+
+# Training final model
+xgb_model <- xgb.train(
+  params = params,
+  data = dtrain,
+  nrounds = best_nrounds,
+  watchlist = list(train = dtrain, valid = dvalid),
+  early_stopping_rounds = 50,
+  verbose = 0
+)
+
+# Predictions and evaluation
+xgb_train_pred <- predict(xgb_model, dtrain)
+xgb_valid_pred <- predict(xgb_model, dvalid)
+
+rmse_train_xgb <- sqrt(mean((train_label - xgb_train_pred)^2))
+rmse_valid_xgb <- sqrt(mean((valid_label - xgb_valid_pred)^2))
+xgb_ss_residual <- sum((validation_set$price - xgb_valid_pred)^2) # RSS
+r_squared_xgb <- 1 - (xgb_ss_residual / ss_total) # R²
+cat("XGBoost Training RMSE:", rmse_train_xgb, "\n")
+cat("XGBoost Validation RMSE:", rmse_valid_xgb, "\n")
+cat("XGBoost Training R²:", r_squared_xgb, "%\n")
+
+# Loading plotting data and plotting
+plot_data <- data.frame(
+  Actual = exp(c(training_set$price, validation_set$price)),
+  Predicted = exp(c(xgb_train_pred, xgb_valid_pred)),
+  Dataset = rep(c("Training", "Validation"), c(nrow(training_set), nrow(validation_set)))
+)
+plot_data$Residuals <- plot_data$Actual - plot_data$Predicted
+
+
+# Checking for normality of errors:
+library(ggpubr)
+ggqqplot(plot_data$Residuals) +
+  theme_minimal() +
+  labs(title = "QQ Plot of Residuals for XGBoost", subtitle = "Checking Normality of Errors Distribution")
+
+# General Scatter plot
+ggplot(plot_data, aes(x = Actual, y = Predicted, color = Dataset)) +
+  geom_point(alpha = 0.6, size = 2) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black") +
+  theme_minimal() +
+  labs(
+    title = "XGBoost Model Performance",
+    subtitle = paste("Log Training RMSE:", round(rmse_train_xgb, 2), "| Log Validation RMSE:", round(rmse_valid_xgb, 2), "| R-squared", round(r_squared_xgb, 3)),
+    x = "Actual Price",
+    y = "Predicted Price",
+    color = "Dataset"
+  ) +
+  scale_color_manual(values = c("blue", "red")) +
+  theme(legend.position = "top") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r Bayesian-XGBoost, eval=FALSE}
+# Bayesian XGBoost ------------
+# Compute heavy hence eval=FALSE
+
+# The following code is based on rBayesianOptimization package example
+new_xgb_cv_bayes <- function(max_depth, eta, subsample, colsample_bytree, min_child_weight) {
+  
+  max_depth <- round(max_depth)  # Ensure max_depth is an integer
+  
+  params <- list(
+    objective = "reg:squarederror",
+    eval_metric = "rmse", #the hyperparameters are aimed to minimise RMSE (penalise big mistakes)
+    max_depth = max_depth,
+    eta = eta,
+    subsample = subsample,
+    colsample_bytree = colsample_bytree,
+    min_child_weight = min_child_weight
+  )
+  
+  # k-Fold Cross-Validation
+  cv_results <- xgb.cv(
+    params = params,
+    data = dtrain,
+    nrounds = 250,
+    nfold = 10,
+    early_stopping_rounds = 50, #ensures computational efficiency and limits overfitting
+    verbose = 0
+  )
+  
+  # Negative RMSE since rBayesianOptimization maximizes the objective
+  return(list(Score = -min(cv_results$evaluation_log$test_rmse_mean), Pred = 0))
+}
+
+# rBayesianOptimization
+set.seed(123)
+opt_results <- BayesianOptimization(
+  FUN = new_xgb_cv_bayes,
+  bounds = list(
+    max_depth = c(5L, 15L),
+    eta = c(0.01, 0.3),
+    subsample = c(0.5, 1),
+    colsample_bytree = c(0.5, 1),
+    min_child_weight = c(1, 10)
+  ),
+  init_points = 10,
+  n_iter = 20,
+  acq = "ei",
+  verbose = TRUE
+)
+
+# Listing the best hyperparameters
+new_xgb_best_params <- list(
+  max_depth = round(opt_results$Best_Par["max_depth"]),
+  eta = opt_results$Best_Par["eta"],
+  subsample = opt_results$Best_Par["subsample"],
+  colsample_bytree = opt_results$Best_Par["colsample_bytree"],
+  min_child_weight = opt_results$Best_Par["min_child_weight"],
+  objective = "reg:squarederror",
+  eval_metric = "rmse"
+)
+cat("Best Hyperparameters: \n")
+print(new_xgb_best_params)
+
+# Final model on the training set
+new_xgb_model <- xgb.train(
+  params = new_xgb_best_params,
+  data = dtrain,
+  nrounds = 250,
+  watchlist = list(train = dtrain, valid = dvalid),  # Now includes validation set
+  early_stopping_rounds = 50,
+  verbose = 1
+)
+
+# RMSE and R²
+new_xgb_train_pred <- predict(new_xgb_model, dtrain)
+new_xgb_valid_pred <- predict(new_xgb_model, dvalid)
+
+rmse_train_new_xgb <- sqrt(mean((train_label - new_xgb_train_pred)^2))
+rmse_valid_new_xgb <- sqrt(mean((valid_label - new_xgb_valid_pred)^2))
+new_xgb_ss_residual <- sum((validation_set$price - new_xgb_valid_pred)^2) # RSS
+r_squared_new_xgb <- 1 - (new_xgb_ss_residual / ss_total) # R²
+
+cat("Bayesian XGBoost Training RMSE:", rmse_train_new_xgb, "\n")
+cat("Bayesian XGBoost Validation RMSE:", rmse_valid_new_xgb, "\n")
+cat("Bayesian XGBoost R²:", r_squared_new_xgb, "%\n")
+
+# Bayesian XGBoost graphics -----------
+
+# Plotting
+plot_data <- data.frame(
+  Actual = exp(c(training_set$price, validation_set$price)),
+  Predicted = exp(c(new_xgb_train_pred, new_xgb_valid_pred)),
+  Dataset = rep(c("Training", "Validation"), c(nrow(training_set), nrow(validation_set)))
+)
+
+ggplot(plot_data, aes(x = Actual, y = Predicted, color = Dataset)) +
+  geom_point(alpha = 0.6, size = 2) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "black") +
+  theme_minimal() +
+  labs(
+    title = "Bayesian Optimised XGBoost Model Performance",
+    subtitle = paste("Log Training RMSE:", round(rmse_train_new_xgb, 2), "| Log Validation RMSE:", round(rmse_valid_new_xgb, 2), "| R²:", round(r_squared_new_xgb, 3)),
+    x = "Actual Price",
+    y = "Predicted Price",
+    color = "Dataset"
+  ) +
+  scale_color_manual(values = c("blue", "red")) +
+  theme(legend.position = "top") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r 'Frankenstein', eval=FALSE}
+# Frankenstein Model ----------
+
+# Load necessary package
+library(nloptr)  # Optimization package to ensure all weights sum to one.
+
+# Defining loss function as RMSE
+frankenstein_loss_function <- function(p, price, xgb_train_pred, rf_train_pred, lasso_train_pred) {
+  price_pred <- p[1] * xgb_train_pred + p[2] * rf_train_pred + p[3] * lasso_train_pred
+  sqrt(mean((price - price_pred)^2))
+}
+
+# Initial weights distribution
+initial_weights <- c(1/3, 1/3, 1/3)
+#ensure equal dimensions:
+# length(training_set$price)
+# length(xgb_train_pred)
+# length(rf_train_pred)
+# length(lasso_train_pred)
+
+# 'optimal' weights
+opt_result <- nloptr(
+  x0 = initial_weights,
+  eval_f = function(p) frankenstein_loss_function(p, training_set$price, xgb_train_pred, rf_train_pred, lasso_train_pred),
+  lb = c(0, 0, 0),  # Non-negative weights
+  ub = c(1, 1, 1),  # Optional upper bounds
+  eval_g_eq = function(p) c(sum(p) - 1),  # Ensure sum of weights = 1
+  opts = list(algorithm = "NLOPT_LN_COBYLA", xtol_rel = 1.0e-6)
+)
+
+# Training RMSE for Lasso is ridiculous and bad but decent for Validation - improve the weights
+
+# Print optimal weights
+optimal_weights <- opt_result$solution
+print(optimal_weights)
+
+# Final predictions
+frankenstein_valid_pred <- optimal_weights[1] * xgb_valid_pred +
+  optimal_weights[2] * rf_valid_pred +
+  optimal_weights[3] * lasso_valid_pred
+
+# RMSE and R-squared
+rmse_valid_frankenstein <- sqrt(mean((validation_set$price - frankenstein_valid_pred)^2))
+frankenstein_ss_residual <- sum((validation_set$price - frankenstein_valid_pred)^2) # RSS
+r_squared_frankenstein <- 1 - (frankenstein_ss_residual / ss_total) # R²
+cat("Random Frankenstein RMSE:", rmse_valid_frankenstein, "\n")
+cat("Random Frankenstein R²:", r_squared_frankenstein, "%\n")
+
+# Testing with non optimised weights (does not yield any results)
+final_pred <- 0.7 * xgb_valid_pred + 0.3 * lasso_valid_pred
+rmse_valid_second <- sqrt(mean((validation_set$price - final_pred)^2))
+cat("testing:", rmse_valid_second, "\n")
+```
+
+### Summary Statistics
+
+```{r Summary-Statistics-and-Tables, eval=FALSE}
+# SUMMARY ------------------------
+cat("Model RMSE Scores:\n")
+cat("Ridge Regression:", rmse_valid_ridge, r_squared_ridge, "\n")
+cat("Lasso Regression:", rmse_valid_lasso, r_squared_lasso, "\n")
+cat("Elastic Net:", rmse_valid_elastic, r_squared_elastic, "\n")
+# cat("Bagging:", rmse_valid_bagging, r_squared_bagging, "\n")
+cat("Random Forest:", rmse_valid_rf, r_squared_rf, "\n") # Compute heavy hence eval=FALSE
+cat("Boosting (GBM):", rmse_valid_boosting, r_squared_boosting, "\n")
+# cat("XGBoost:", rmse_valid_xgb, r_squared_xgb, "\n")
+# cat("Bayesian XGBoost:", rmse_valid_new_xgb, r_squared_new_xgb, "\n") # Compute heavy hence eval=FALSE
+# cat("'Frankenstein Model':", rmse_valid_frankenstein, r_squared_frankenstein, "\n")
+
+# Overfitting and performance tables ----- 
+
+# "rmse_valid" index comparison
+rmse_valid_vars = ls(pattern = "^rmse_valid")  # Finding all variables starting with "rmse_valid"
+rmse_valid_df = data.frame(
+  method = sub("^rmse_valid_", "", rmse_valid_vars),  # Removing the prefix
+  rmse = sapply(rmse_valid_vars, function(x) get(x)),
+  stringsAsFactors = FALSE
+)
+rmse_valid_df = rmse_valid_df %>%
+  arrange(rmse)
+
+# "rmse_train" index comparison
+rmse_train_vars = ls(pattern = "^rmse_train")  # Finding all variables starting with "rmse_train"
+rmse_train_df = data.frame(
+  method = sub("^rmse_train_", "", rmse_train_vars),  # Removing the prefix
+  rmse = sapply(rmse_train_vars, function(x) get(x)),
+  stringsAsFactors = FALSE
+)
+rmse_train_df = rmse_train_df %>%
+  arrange(rmse)
+
+# "R-squared" index comparison
+r_squared_vars = ls(pattern = "^r_squared")  # Finding all variables starting with "r_squared_valid"
+r_squared_df = data.frame(
+  method = sub("^r_squared_", "", r_squared_vars),  # Removing the prefix
+  r_squared = sapply(r_squared_vars, function(x) get(x)),
+  stringsAsFactors = FALSE
+)
+r_squared_df = r_squared_df %>%
+  arrange(r_squared)
+
+# View the resulting data frames
+# View(rmse_train_df)
+# View(rmse_valid_df)
+# View(r_squared_df)
+
+# Final table  -----
+# Merging all final dataframes
+performance_table <- merge(
+  merge(
+    rmse_train_df,
+    rmse_valid_df,
+    by = "method",  # Merge train and valid RMSE first
+    suffixes = c("_train", "_valid")
+  ),
+  r_squared_df,
+  by = "method"  # Then merge with R-squared
+)
+colnames(performance_table) <- c("Model", "RMSE (Training)", "RMSE (Validation)", "R-squared")
+
+# Generating LaTeX table (hopefully)
+final_performance_table <- knitr::kable(
+  performance_table,
+  format = "latex",
+  caption = "Model Performance Comparison",
+  booktabs = TRUE,
+  align = c("l", "r", "r", "r"),  
+  digits = c(0, 3, 3, 3),         # 3 decimal places are enough
+  col.names = c("Model", "RMSE (Training)", "RMSE (Validation)", "R-squared")
+)
+cat(final_performance_table)
+
+# To reload the tables please remove the dataframes and rerun code:
+# sapply(rmse_valid_vars, function(x) length(get(x))) #verify there are not conflicting arrays
+if(exists("rmse_valid_df")) rm(rmse_valid_df) # remove them if necessary
+if(exists("rmse_valid_vars")) rm(rmse_valid_vars) 
+if(exists("rmse_train_df")) rm(rmse_train_df) 
+if(exists("rmse_train_vars")) rm(rmse_train_vars)
+if(exists("r_squared_df")) rm(r_squared_df) 
+if(exists("r_squared_vars")) rm(r_squared_vars) 
+
+```
+
+```{r Additional-plotting, eval=FALSE}
+# XGBoost Feature importance graphics -----------
+
+# XGBoost package allows for feature importance analysis
+# Plotting importance features
+library(Ckmeans.1d.dp)
+importance_matrix <- xgb.importance(
+  feature_names = colnames(train_matrix),
+  model = xgb_model
+)
+
+importance_plot <- xgb.ggplot.importance(
+  importance_matrix = importance_matrix,
+  top_n = 10,
+  measure = "Gain", # Additionally: "Cover" is the relative number of observations related to this feature or "Frequency" is the number of times a feature is used in all generated trees
+  rel_to_first = TRUE
+) +
+  ggtitle("XGBoost Feature Importance (Gain)") + # the importance of each feature relative to the top feature (bedrooms)
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+print(importance_plot)
+```
+
+##Additional and compute-heavy Python and *R* codes are available below:
+
+```{python Gender-Classification, eval=FALSE}
+# Compute heavy hence eval=FALSE
+
+import pandas as pd
+from gender_predictor.GenderClassifier import classify_gender
+file_path = '/Users/antonidziwura/Desktop/GitHub/EC349 Project/processed_data.csv'
+df = pd.read_csv(file_path)
+
+df["gender"] = df["host_name"].apply(classify_gender)
+df.loc[df["host_name"].str.contains("&| and ", case=False, na=False), "gender"] = "Couple"
+df.to_csv("Host_classified.csv", index=False)
+```
+
+```{r Amenities counting, eval=FALSE}
+# Top Amenities counting ------
+# Compute heavy hence eval=FALSE
+
+# Original code to identify twenty most popular amenities:
+   listings$amenities <- as.character(listings$amenities)
+   amenities_list <- strsplit(listings$amenities, ",") # Split the amenities into list
+   amenities_list <- lapply(amenities_list, function(x) trimws(gsub('[\"\\[\\]]', '', x))) # Clean names
+   amenity_counts <- table(unlist(amenities_list)) %>% sort(decreasing = TRUE) # Counting and sorting occurrences of each unique amenity
+   n <- 20 # Seting the number for most common amenities
+   top_amenities <- names(amenity_counts)[1:n]
+   amenities_df <- as.data.frame(matrix(0, nrow = nrow(listings), ncol = n))
+   colnames(amenities_df) <- top_amenities # implementing into the DF
+   for (i in seq_along(amenities_list)) {
+    amenities_df[i, top_amenities %in% amenities_list[[i]]] <- 1
+   } # Populating the dataframe
+   df <- cbind(listings, amenities_df) # combining with df
+```
+
+## Bibliography
+
+bibliography: - EC349references.bib
+
+csl: apa.csld
