@@ -7,10 +7,10 @@ Datasets can be accessed through: https://www.dropbox.com/scl/fo/16u61nau4brhnnx
 3. the ‘final_data.csv’ is the final dataset for the ‘EC349 Final Code Models.R’ script
 
 Supporting files and code include:
-4. 'EC349_Report.Rmd' allows to run all the code however requires switching eval=FALSE to TRUE
-5. the ‘EC349 Final Code Processing.R’ is the script which process all data
-6. the ‘EC349 Final Code Models.R’ runs all the data analysis and models
-7. ‘London stations.csv’ and ‘Museums and Nightclubs (Nov 2023).csv' are supporting datasets for the data preprocessing
-8. the Graphics folder includes all graphics
-9. the EC349 Python Scripts and early code include supporting Python and R scripts
-10. the ‘EC349references.bib’ includes references
+1. 'EC349_Report.Rmd' allows to run all the code however requires switching eval=FALSE to TRUE
+2. the ‘EC349 Final Code Processing.R’ is the script which process all data
+3. the ‘EC349 Final Code Models.R’ runs all the data analysis and models
+4. 'London stations.csv’ and ‘Museums and Nightclubs (Nov 2023).csv' are supporting datasets for the data preprocessing
+5. the Graphics folder includes all graphics
+6. the EC349 Python Scripts and early code include supporting Python and R scripts
+7. the ‘EC349references.bib’ includes references
