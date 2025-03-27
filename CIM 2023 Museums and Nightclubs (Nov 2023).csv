@@ -1,0 +1,388 @@
+﻿category,name,address1,address2,address3,borough_name,website,os_addressbase_uprn,borough_code,ward_2022_name,ward_2022_code,cim_latitude,cim_longitude,easting,northing
+museum,Museum of Croydon,Central Library,Croydon Clocktower,Katharine Street,Croydon,http://www.museumofcroydon.com/,1.00E+11,E09000008,Fairfield,E05011468,51.37138431,-0.097931813,532492.4014,165308.3352
+museum,Museum of Writing,c/o Institute of English Studies,University of London Senate House,Malet Street,Camden,http://www.museumofwriting.co.uk/,5016035,E09000007,Bloomsbury,E05013653,51.52013303,-0.127116688,530038.1684,181797.0314
+museum,The Foundling Museum,40 Brunswick Square,NA,NA,Camden,http://www.foundlingmuseum.org.uk/,5002560,E09000007,King's Cross,E05013666,51.52475979,-0.12006408,530514.219,182324.0735
+museum,Freud Museum,20 Maresfield Gardens,NA,NA,Camden,https://www.freud.org.uk/,5012934,E09000007,Belsize,E05013652,51.54791475,-0.175669217,526592.764,184801.3325
+museum,Keats House,10 Keats Grove,Hampstead,NA,Camden,http://www.cityoflondon.gov.uk/keats,5015415,E09000007,Hampstead Town,E05013659,51.55506318,-0.166351857,527218.8354,185612.4092
+museum,British Museum,Great Russell Street,NA,NA,Camden,http://www.britishmuseum.org/,5027059,E09000007,Bloomsbury,E05013653,51.51846067,-0.124893237,530197.1877,181615.0128
+museum,2 Willow Road,Hampstead,NA,NA,Camden,https://www.nationaltrust.org.uk/2-willow-road,5032722,E09000007,Hampstead Town,E05013659,51.5566561,-0.167571832,527129.8261,185787.4288
+museum,British Library,96 Euston Road London,NW1 2DBÂ ,NA,Camden,http://www.bl.uk/,5037737,E09000007,King's Cross,E05013666,51.52947699,-0.125406634,530130.1731,182839.1238
+museum,Burgh House and Hampstead Museum,New End Square,Hampstead,NA,Camden,www.burghhouse.org.uk/,5067420,E09000007,Hampstead Town,E05013659,51.55767471,-0.173489583,526716.7827,185890.4426
+museum,Royal College of Physicians of London Museum,Library Archive and Museum Services,11 St Andrews Place,Regentâ€™s Park,Camden,http://www.rcplondon.ac.uk/museum-and-garden,5069347,E09000007,Regent's Park,E05013668,51.52523946,-0.143400913,528894.038,182336.0881
+museum,"Jewish Museum, London",Raymond Burton Hs,129-131 Albert Street,NA,Camden,http://www.jewishmuseum.org.uk/,5082327,E09000007,Camden Town,E05013655,51.53677278,-0.143061343,528885.0286,183619.2052
+museum,Wellcome Collection,183 Euston Road,NA,NA,Camden,http://www.wellcomecollection.org/,5083806,E09000007,Bloomsbury,E05013653,51.52538756,-0.132336523,529661.123,182372.0859
+museum,Government Art Collection,Queen's Yard,179a Tottenham Court Rd,NA,Camden,www.gac.culture.gov.uk/,5087928,E09000007,Bloomsbury,E05013653,51.52177882,-0.133320357,529603.119,181969.0495
+museum,Fenton House and Garden,Hampstead Grove,Hampstead,NA,Camden,https://www.nationaltrust.org.uk/fenton-house-and-garden,5126160,E09000007,Hampstead Town,E05013659,51.55840996,-0.178553228,526363.7461,185963.4528
+museum,Sir John Soane's Museum,13 Lincolnâ€™s Inn Fields,NA,NA,Camden,http://www.soane.org/,5137612,E09000007,Holborn & Covent Garden,E05013662,51.51648243,-0.115936351,530824.2595,181410.9889
+museum,"Grant Museum of Zoology and Comparative Anatomy, UCL",21 University Street,NA,NA,Camden,https://www.ucl.ac.uk/culture/grant-museum-zoology,5157295,E09000007,Bloomsbury,E05013653,51.52311501,-0.133078286,529616.1195,182118.0634
+museum,Petrie Museum of Egyptian Archaeology,University College London,Malet Place,NA,Camden,http://www.culture24.org.uk/se000386,5157395,E09000007,Bloomsbury,E05013653,51.52353919,-0.130912785,529765.1357,182169.0669
+museum,"Geology (and Teaching & Research) Collections, UCL",Rock Room,"Room 4, First Floor",South Wing,Camden,https://www.ucl.ac.uk/culture/geology-collection,5157402,E09000007,Bloomsbury,E05013653,51.52359052,-0.13187663,529698.1283,182173.0677
+museum,UCL Art Museum,South Cloisters,UCL,NA,Camden,http://www.ucl.ac.uk/museums/uclart,5157412,E09000007,Bloomsbury,E05013653,51.52399221,-0.131687181,529710.1293,182218.0714
+museum,Crystal Palace Museum,Anerley Hill,NA,NA,Bromley,www.crystalpalacemuseum.org.uk/,1.00E+11,E09000006,Crystal Palace & Anerley,E05013995,51.41925428,-0.075116344,533940.5738,170672.9786
+museum,Ragged School Museum,46-50 Copperfield Road,NA,NA,Tower Hamlets,http://www.raggedschoolmuseum.org.uk/,6048400,E09000030,Mile End,E05009327,51.51815155,-0.03407382,536498.868,181746.0406
+museum,The Tower of London,St Katharine's & Wapping,London,NA,Tower Hamlets,www.â€‹hrp.â€‹org.â€‹uk/â€‹TowerOfLondon/â€‹,6086565,E09000030,St Katharine's & Wapping,E05009330,51.50776272,-0.074659304,533713.5822,180515.9077
+museum,"Royal Armouries, Tower of London",HM Tower Of London,St Katharine's & Wapping,NA,Tower Hamlets,https://royalarmouries.org/visit-us/tower-of-london,6086565,E09000030,St Katharine's & Wapping,E05009330,51.50776272,-0.074659304,533713.5822,180515.9077
+museum,The Fusilier Museum London,HM Tower of London,35 Tower Hill,St Katharine's & W,Tower Hamlets,www.â€‹fusiliermuseumlondon.â€‹org,6086845,E09000030,St Katharine's & Wapping,E05009330,51.50788027,-0.073602252,533786.5896,180530.9114
+museum,Museum of the Royal Pharmaceutical Society,66-68 E Smithfield,NA,,Tower Hamlets,www.â€‹rpsgb.â€‹org/â€‹museum,6136082,E09000030,St Katharine's & Wapping,E05009330,51.50856685,-0.066684113,534264.6392,180619.9284
+museum,Museum of London Docklands,No. 1 Warehouse,West India Quay,NA,Tower Hamlets,http://www.museumoflondon.org.uk/docklands,6151122,E09000030,Canary Wharf,E05009323,51.5071062,-0.022241432,537352.9774,180539.9256
+museum,Trades Union Congress (TUC) Library Collections,Special Collections  London Metropolitan Universit,Wash Houses,Old Castle Street,Tower Hamlets,http://www.londonmet.ac.uk/tuc,6151239,E09000030,Spitalfields & Banglatown,E05009333,51.51526246,-0.072411463,533847.5884,181353.9976
+museum,Kelmscott Manor,26 Upper Mall,Hammersmith,NA,Hammersmith and Fulham,http://www.culture24.org.uk/se000423,34008094,E09000013,Hammersmith Broadway,E05013741,51.49007025,-0.233934067,522708.3981,178269.7456
+museum,Fulham Palace,Fulham Palace,Bishop's Ave,Fulham,Hammersmith and Fulham,www.fulhampalace.org/,34022825,E09000013,Palace & Hurlingham,E05013744,51.47003084,-0.213626422,524172.5335,176075.5248
+museum,Wandle Industrial Museum,The Vestry Hall Annexe,London Road,Mitcham,Merton,http://www.wandle.org/,48083242,E09000024,Cricket Green,E05013813,51.4017516,-0.166466478,527637.8128,168563.8147
+museum,Museum of Wimbledon,22 Ridgway,Wimbledon,NA,Merton,http://www.wimbledonmuseum.org.uk/,48107954,E09000024,Village,E05013825,51.42283672,-0.215074838,524199.7653,170825.0536
+museum,Wimbledon Lawn Tennis Museum,The All England Lawn Tennis Club,Church Road,Wimbledon,Merton,http://www.wimbledon.com/museum,48129052,E09000024,Village,E05013825,51.43320243,-0.212459281,524353.4992,171982.1564
+museum,Barts Pathology Museum,3rd Floor,Robin Brook Centre  St Bartholomew's ,West Smithfield,City of London,www.qmul.ac.uk/pathologymuseum/,95512892,E09000001,Farringdon Without,E05009305,51.51713619,-0.099433593,531967.337,181513.2876
+museum,St. Bartholomew's Hospital Museum,North Wing,St Bartholomewâ€™s Hospital,West Smithfield,City of London,https://www.bartshealth.nhs.uk/st-bartholomews-museum-and-archives,95512892,E09000001,Farringdon Without,E05009305,51.51713619,-0.099433593,531967.337,181513.2876
+museum,Valence House Museum,Becontree Ave,NA,NA,Barking and Dagenham,www.â€‹lbbd.â€‹gov.â€‹uk/â€‹heritage,100002560,E09000002,Valence,E05014069,51.55780231,0.135812252,548156.3576,186485.5668
+museum,Dorich House Museum,Kingston University,67 Kingston Vale,NA,Kingston upon Thames,https://www.dorichhousemuseum.org.uk/,128010892,E09000021,Coombe Hill,E05013932,51.4328253,-0.261523826,520944.1126,171858.1868
+museum,Kingston Museum (and Heritage Service),Wheatfield Way,Kingston upon Thames,NA,Kingston upon Thames,http://www.kingston.gov.uk/museum,128019799,E09000021,Kingston Town,E05013938,51.40903476,-0.298723543,518419.9144,169151.8418
+museum,The Stephens Collection,Avenue House,East End Road,Finchley,Barnet,http://www.london-northwest.com/sites/stephens,200035687,E09000003,Finchley Church End,E05013639,51.59610036,-0.192996205,525258.9904,190129.9265
+museum,Royal Air Force Museum London (RAF),Grahame Park Way,Hendon,NA,Barnet,http://www.rafmuseum.org/,200049886,E09000003,Hendon,E05013643,51.59844565,-0.236591661,522233.2369,190316.9636
+museum,Barnet Museum (and Local History Society),31 Wood Street,Barnet,Hertfordshire,Barnet,www.barnetmuseum.co.uk,200128241,E09000003,High Barnet,E05013644,51.65238108,-0.200717589,524570.1103,196375.5141
+museum,Museum of Domestic Design and Architecture,Middlesex University,9 Boulevard Drive,Beaufort Park,Barnet,http://www.culture24.org.uk/se000059,200141133,E09000003,Colindale South,E05013633,51.59561416,-0.240340162,521981.1995,189995.8336
+museum,Brent Museum and Archives,Willesden Library Centre,95 High Rd,NA,Brent,https://www.brent.gov.uk/museum,202149110,E09000005,Brondesbury Park,E05013498,51.54614396,-0.22734961,523014.3652,184516.3249
+museum,The Clockmakers' Museum,Exhibition Road,Kensington,NA,Kensington and Chelsea,http://www.clockmakers.org/,217031151,E09000020,Brompton & Hans Town,E05009389,51.49678399,-0.174916546,526786.8366,179116.7984
+museum,Leighton House Museum,12 Holland Park Road,NA,NA,Kensington and Chelsea,http://http/www.rbkc.gov.uk/subsites/museums.aspx,217039506,E09000020,Abingdon,E05009388,51.49807644,-0.201521502,524936.6333,179214.8192
+museum,Design Museum,224-238 Kensington High Street (Holland Park),NA,NA,Kensington and Chelsea,http://designmuseum.org/,217044656,E09000020,Campden,E05009390,51.49936312,-0.198585083,525136.9238,179362.9115
+museum,Kensington Palace (State Apartments and Royal Ceremon,Kensington Palace/Palace Green,NA,NA,Kensington and Chelsea,http://www.hrp.org.uk%0Bwww.kensingtonpalace@hrp.org.uk/,217064431,E09000020,Campden,E05009390,51.50468832,-0.18644659,525964.7383,179975.8844
+museum,National Army Museum,Royal Hospital Road,Chelsea,NA,Kensington and Chelsea,http://www.nam.ac.uk/,217075883,E09000020,Royal Hospital,E05009403,51.48571566,-0.158760019,527939.2362,177914.0669
+museum,RIBA Drawings and Archives Collections,Victoria and Albert Museum,Cromwell Road,Knightsbridge,Kensington and Chelsea,https://www.architecture.com/about/riba-library-and-collections,217108016,E09000020,Brompton & Hans Town,E05009389,51.49639021,-0.170521415,527093.0004,179080.6241
+museum,Natural History Museum,Cromwell Road,NA,NA,Kensington and Chelsea,http://www.nhm.ac.uk/,217108017,E09000020,Brompton & Hans Town,E05009389,51.49605236,-0.175291575,526762.8348,179034.7912
+museum,Carlyle's House,24 Cheyne Row,NA,NA,Kensington and Chelsea,https://www.nationaltrust.org.uk/carlyles-house,217110505,E09000020,Chelsea Riverside,E05009391,51.48361945,-0.168124823,527294.8913,177664.6544
+museum,The Science Museum,Exhibition Rd,Kensington,NA,Kensington and Chelsea,https://www.sciencemuseum.org.uk/,217118723,E09000020,Brompton & Hans Town,E05009389,51.49678399,-0.174916546,526786.8366,179116.7984
+museum,Victoria and Albert Museum,Cromwell Road,South Kensington,NA,Kensington and Chelsea,http://www.vam.ac.uk/,217119925,E09000020,Brompton & Hans Town,E05009389,51.49643156,-0.170623933,527085.7696,179085.0444
+museum,The Estorick Collection of Modern Italian Art,39A Canonbury Square,NA,NA,Islington,www.â€‹estorickcollection.â€‹com,5300016244,E09000019,Laycock,E05013708,51.54336953,-0.098988883,531922.3576,184431.2792
+museum,John WesleyÊ¼s House and The Museum of Methodism,Wesley's Chapel,49 City Road,NA,Islington,http://www.culture24.org.uk/se000445,5300019876,E09000019,Bunhill,E05013699,51.52307582,-0.085460513,532919.4835,182199.0655
+museum,"Wesleyâ€™s Chapel, Museum of Methodism and John Wesle",49 City Road,NA,NA,Islington,http://www.wesleychapel.org.uk/,5300019879,E09000019,Bunhill,E05013699,51.52325609,-0.084933935,532955.4871,182220.0685
+museum,London Canal Museum,12/13 New Wharf Road,Kingâ€™s Cross,NA,Islington,http://www.canalmuseum.org.uk/,5300066428,E09000019,Caledonian,E05013700,51.53371372,-0.118714556,530582.2212,183322.1623
+museum,Museum of the Order of St John,St Johnâ€™s Gate,26 St John's Ln,NA,Islington,http://www.museumstjohn.org.uk/,5300085644,E09000019,Bunhill,E05013699,51.52141165,-0.100927156,531851.3712,181986.0312
+museum,Whitehall Historic House,1 Malden Road,Cheam,Surrey,Sutton,https://whitehallmuseum.wordpress.com/,5870019263,E09000029,Cheam,E05013758,51.35885564,-0.215642786,524333.4071,163709.2684
+museum,Honeywood Museum,Honeywood Walk,Carshalton,Surrey,Sutton,http://www.friendsofhoneywood.co.uk/,5870115967,E09000029,Carshalton Central,E05013756,51.36460606,-0.163496882,527947.8484,164438.3386
+museum,Tate Modern,Bankside,NA,NA,Southwark,http://www.tate.org.uk/modern,10000813334,E09000028,Borough & Bankside,E05011095,51.50710595,-0.097789441,532110.4095,180400.8869
+museum,Fashion and Textile Museum,83 Bermondsey Street,NA,NA,Southwark,http://www.ftmlondon.org/,10000818830,E09000028,London Bridge & West Bermondsey,E05011104,51.50066771,-0.080203629,533349.551,179716.8198
+museum,Musical Museum,399 High St,Brentford,NA,Hounslow,https://www.musicalmuseum.co.uk/,10001271544,E09000018,Chiswick Riverside,E05013611,51.48739874,-0.291568435,518714.2611,177877.7613
+museum,Hampton Court Palace,Molesey,East Molesey,NA,Richmond upon Thames,https://www.hrp.org.uk/hampton-court-palace/,10002266633,E09000027,Hampton,E05013778,51.40333861,-0.336075749,515836.6121,168458.7886
+museum,Kew Palace,Royal Botanic Gardens Kew,Richmond,NA,Richmond upon Thames,https://www.hrp.org.uk/kew-palace/,10002266941,E09000027,Kew,E05013782,51.48476211,-0.289611457,518856.9723,177587.7387
+museum,Strawberry Hill House,268 Waldegrave Rd,Twickenham,NA,Richmond upon Thames,http://www.strawberryhillhouse.org.uk/,10002267260,E09000027,South Twickenham,E05013787,51.43770637,-0.333172189,515951.6376,172285.2114
+museum,Heath Robinson Museum,Pinner Memorial Park,West End Lane,Pinner,Harrow,www.heathrobinsonmuseum.org,10002293329,E09000015,Pinner South,E05013556,51.59197479,-0.385111771,511963.149,189359.7765
+museum,Headstone Manor & Museum,Headstone Manor,Pinner View,Â Harrow,Harrow,http://www.harrow.gov.uk/info/200070/museums_and_galleries/190/harrow_museum,10002293456,E09000015,Headstone,E05013550,51.59396486,-0.353505542,514147.4368,189629.9386
+museum,Hackney Museum,1 Reading Lane,NA,NA,Hackney,http://www.hackney.gov.uk/cm-museum.htm,10008313143,E09000012,Homerton,E05009376,51.54397082,-0.054481199,535006.6997,184579.3952
+museum,House Mill,Three Mill Lane,Bromley-by-Bow,NA,Newham,NA,10008997232,E09000025,Stratford,E05013924,51.52689584,-0.005984978,538421.0758,182771.1126
+museum,Royal Museums Greenwich,National Maritime Museum,Greenwich,NA,Greenwich,http://www.rmg.co.uk/,10010231322,E09000011,Greenwich Park,E05014081,51.48063722,-0.002131999,538828.8675,177634.5231
+museum,Eltham Palace,Court Yard,NA,NA,Greenwich,http://www.english-heritage.org.uk/elthampalace,10010235842,E09000011,Eltham Town & Avery Hill,E05014079,51.44646434,0.049538845,542522.9353,173933.6759
+museum,National Maritime Museum,Romney Road,NA,NA,Greenwich,http://www.rmg.co.uk/national-maritime-museum#,10010243516,E09000011,Greenwich Park,E05014081,51.48042509,-0.003622409,538726.0229,177608.1127
+museum,Charterhouse,Sutton's Hospital,Charterhouse Square,NA,Islington,http://www.thecharterhouse.org/,10023218636,E09000019,Bunhill,E05013699,51.52080505,-0.098458374,532024.3911,181923.0233
+museum,Cinema Museum,"The Masterâ€™s House, The Old Lambeth Workhouse",2 Dugard Way,Kennington,Lambeth,http://www.rmg.co.uk/cuttysark,10023852579,E09000022,Kennington,E05014105,51.49176679,-0.103585874,531752.3806,178684.7282
+museum,Michael Faraday Museum at the Royal Institution,The Royal Institution,21 Albemarle Street,NA,Westminster,http://www.rigb.org/,10033528771,E09000033,West End,E05013808,51.50943533,-0.14097368,529107.0773,180582.923
+museum,Tate Britain,Millbank,NA,NA,Westminster,http://www.tate.org.uk/britain,10033538284,E09000033,Vincent Square,E05013807,51.49035804,-0.125600103,530228.2143,178488.7184
+museum,The Society of Antiquaries of London - Burlington Hou,Burlington House,Piccadilly,Mayfair,Westminster,www.â€‹sal.â€‹org.â€‹uk,10033541032,E09000033,St James's,E05013806,51.50822168,-0.138169461,529305.1003,180452.9098
+museum,Royal Academy of Arts,Burlington House,Piccadilly,NA,Westminster,http://www.royalacademy.org.uk/,10033541035,E09000033,St James's,E05013806,51.50858766,-0.137996003,529316.1011,180493.9134
+museum,Marylebone Cricket Club Museum,Lordâ€™s Ground,NA,NA,Westminster,http://www.lords.org/,10033543781,E09000033,Regent's Park,E05013805,51.52803681,-0.171475242,526938.8217,182598.1247
+museum,The Courtauld Gallery,Somerset House,Strand,NA,Westminster,http://www.courtauld.ac.uk/gallery,10033544134,E09000033,St James's,E05013806,51.51050867,-0.116370226,530811.2628,180745.9282
+museum,Household Cavalry Museum,Horseguards Parade,Whitehall,NA,Westminster,http://www.culture24.org.uk/se000447,10033545888,E09000033,St James's,E05013806,51.50446986,-0.125655069,530184.2005,180057.8677
+museum,Royal Academy of Music Museum,1â€“5 York Gate,Marylebone Road,NA,Westminster,http://www.ram.ac.uk/museum,10033546476,E09000033,Marylebone,E05013801,51.52299939,-0.150758163,528389.985,182074.0668
+museum,Guards Museum,Wellington Barracks,Birdcage Walk,NA,Westminster,http://www.theguardsmuseum.com/,10033547407,E09000033,St James's,E05013806,51.4990968,-0.136697005,529433.1236,179440.8138
+museum,Banqueting House Whitehall,Whitehall,NA,NA,Westminster,www.hrp.org.uk,10033549112,E09000033,St James's,E05013806,51.50402625,-0.124347466,530276.211,180010.8623
+museum,Imperial College Healthcare Charity Art Collection at,Ground Floor,Clarence Memorial Wing St Mary's Hosp,Praed Street,Westminster,NA,10033554476,E09000033,Hyde Park,E05013796,51.51688486,-0.172051702,526929.8317,181357.0082
+museum,The Wallace Collection,Hertford House,Manchester Square,NA,Westminster,http://www.wallacecollection.org/,10033582984,E09000033,Marylebone,E05013801,51.51665878,-0.151317737,528368.989,181368.0007
+museum,British Optical Association Museum,The College of Optometrists,41-42 Craven St,NA,Westminster,https://www.college-optometrists.org/the-college/museum.html,10033590012,E09000033,St James's,E05013806,51.50733274,-0.123773966,530306.5808,180379.5669
+museum,Anaesthetesia Heritage Centre,21 Portland Pl,Marylebone,NA,Westminster,https://www.aagbi.org/education/heritage-centre/anaesthesia-museum,10033598850,E09000033,West End,E05013808,51.51888307,-0.143529719,528903.0451,181629.0223
+museum,Museum of the Royal Philatelic Society London,Royal Philatelic Society London,41 Devonshire Place,Marylebone,Westminster,http://www.rpsl.org.uk/,10033629406,E09000033,Marylebone,E05013801,51.52096728,-0.14850506,528552.0046,181852.0452
+museum,Churchill War Rooms,Clive Steps,King Charles Street,NA,Westminster,http://iwm.org.uk/,10033636263,E09000033,St James's,E05013806,51.50166677,-0.127796465,530043.568,179742.3584
+museum,Havering Museum,19-21 High St,Romford,NA,Havering,www.haveringmuseum.org.uk/,10070706838,E09000016,St Edward's,E05013983,51.5774139,0.181204103,551237.6788,188759.115
+museum,Marble Hill House,Richmond Rd,Twickenham,NA,Richmond upon Thames,http://www.culture24.org.uk/se000472,10070709920,E09000027,Twickenham Riverside,E05013789,51.44900128,-0.311746658,517411.7528,173575.3794
+museum,Museum of Richmond,Old Town Hall,Whittaker Avenue,Richmond,Richmond upon Thames,www.â€‹museumofrichmond.â€‹com,10070710719,E09000027,South Richmond,E05013786,51.45830224,-0.305011527,517855.8088,174620.4858
+museum,World Rugby Museum,Twickenham Stadium,Rugby Road,Twickenham,Richmond upon Thames,http://www.rfu.com/museum,10070721329,E09000027,St Margarets & North Twickenham,E05013785,51.4547979,-0.33915697,515492.5723,174176.4415
+museum,Bentley Priory Museum,Mansion House Drive Stanmore,NA,NA,Harrow,www.bentleypriory.org,10091091981,E09000015,Stanmore,E05013560,51.62601154,-0.331493386,515590.6756,193228.2319
+museum,Black Cultural Archives,1 Windrush Square,NA,NA,Lambeth,www.bcaheritage.org.uk,10091118537,E09000022,Brixton Windrush,E05014098,51.45999969,-0.11299205,531190.4264,175135.3246
+museum,Redbridge Museum,Redbridge Central Library,Clements Road,lford,Redbridge,redbridgefirstworldwar.org.uk,10091799736,E09000026,Clementswood,E05011240,51.55755549,0.076933039,544075.866,186340.5691
+museum,Horniman Museum and Gardens,100 London Road,Forest Hill,NA,Lewisham,http://www.horniman.ac.uk/,10091839078,E09000023,Forest Hill,E05013722,51.44061193,-0.059150882,534987.7277,173077.218
+museum,Library and Museum of Freemasonry,Freemasons' Hall,60 Great Queen Street,NA,Camden,http://www.freemasonry.london.museum/,10091860258,E09000007,Holborn & Covent Garden,E05013662,51.51465144,-0.119529012,530580.2338,181200.9714
+museum,Crossness Engines,The Old Works. Thames Water S.T.W.,Bazalgette Way,Abbey Wood,Bexley,http://www.crossness.org.uk/,10091915267,E09000004,Thamesmead East,E05011232,51.50529066,0.13561791,548313.2433,180645.9768
+museum,National Portrait Gallery,St Martinâ€™s Place,NA,NA,Westminster,http://www.npg.org.uk/,1.00E+11,E09000033,St James's,E05013806,51.50888716,-0.126871767,530087.1851,180546.9142
+museum,Hunterian Museum at the Royal College of Surgeons,Royal College of Surgeons,35-43 Lincolnâ€™s Inn Fields,NA,Westminster,http://www.medicalmuseums.org/,10091945440,E09000033,St James's,E05013806,51.51477419,-0.114291539,530943.274,181223.9705
+museum,Anatomy and Pathology Museum,35-43 Lincoln's Inn Fields,NA,NA,Westminster,https://www.rcseng.ac.uk/,10091945440,E09000033,St James's,E05013806,51.51477419,-0.114291539,530943.274,181223.9705
+museum,Kenwood House (known as the Iveagh Bequest),Hampstead Ln,Highgate,NA,Camden,http://www.culture24.org.uk/mw387,10091954503,E09000007,Highgate,E05013661,51.57082353,-0.166020721,527197.8458,187365.6024
+museum,Hall Place and Gardens,Bourne Road,Bexley,Kent,Bexley,https://www.hallplace.org.uk/,1.00E+11,E09000004,Crayford,E05011222,51.44750903,0.16186577,550324.6212,174274.2463
+museum,Museum of the Home,136 Kingsland Road,London,NA,Hackney,http://www.geffrye-museum.org.uk/,1.00E+11,E09000012,Haggerston,E05009375,51.53104717,-0.074657422,533645.5502,183105.1774
+museum,Ham House and Garden,Ham House and Garden,Ham St,Richmond-upon-Tham,Richmond upon Thames,https://www.nationaltrust.org.uk/ham-house-and-garden,1.00E+11,E09000027,"Ham, Petersham & Richmond Riverside",E05013777,51.4431649,-0.314897784,517207.7422,172921.2992
+museum,Orleans House Gallery,Riverside,Twickenham,NA,Richmond upon Thames,http://www.richmond.gov.uk/arts,1.00E+11,E09000027,Twickenham Riverside,E05013789,51.44681783,-0.317512279,517016.7186,173323.3481
+museum,romley Historic Collections (at Bromley Central Libra,Â High St,Bromley,NA,Bromley,NA,1.00E+11,E09000006,Bromley Town,E05013991,51.40324078,0.016066784,540329.3874,169062.757
+museum,Bethlem Museum of the Mind,Bethlem Royal Hospital,Monks Orchard Road,NA,Bromley,http://museumofthemind.org.uk/,1.00E+11,E09000006,Kelsey & Eden Park,E05013999,51.38039353,-0.028155004,537321.9031,166438.461
+museum,Dr. Johnson's House,17 Gough Square,NA,NA,City of London,http://www.drjohnsonshouse.org/,1.00E+11,E09000001,Castle Baynard,E05009297,51.51452396,-0.106575808,531479.3341,181209.9645
+museum,Walthamstow Pumphouse Museum,10 S Access Rd,Walthamstow,NA,Waltham Forest,http://e17pumphouse.org.uk/,1.00E+11,E09000031,St James,E05013899,51.57620829,-0.033171337,536387.8999,188203.7301
+museum,Vestry House Museum,Vestry Road,NA,NA,Waltham Forest,http://www.walthamforest.gov.uk/vestry-house,1.00E+11,E09000031,Hoe Street,E05013893,51.58350852,-0.011143846,537892.0644,189056.8269
+museum, Sutton House and Breaker's Yard,2 & 4 Homerton High St,NA,NA,Hackney,www.â€‹nationaltrust.â€‹org.â€‹uk/â€‹sutton-â€‹house,1.00E+11,E09000012,Homerton,E05009376,51.54797778,-0.048814315,535387.7472,185035.4346
+museum,The Garden Museum,5 Lambeth Palace Rd,Lambeth,NA,Lambeth,www.â€‹gardenmuseum.â€‹org.â€‹uk,1.00E+11,E09000022,Waterloo & South Bank,E05014118,51.49453609,-0.118613722,530701.2667,178965.7618
+museum,Ranger's House,Chesterfield Walk,Lewisham,NA,Greenwich,http://www.english-heritage.org.uk/visit/places/rangers-house-the-wernher-collection/,1.00E+11,E09000011,Greenwich Park,E05014081,51.47289476,-1.71E-05,538999.2545,176777.5753
+museum,Fan Museum,12 Crooms Hill,NA,NA,Greenwich,https://www.thefanmuseum.org.uk/,1.00E+11,E09000011,Greenwich Park,E05014081,51.47846443,-0.006612863,538524.3178,177384.4334
+museum,The Old Royal Naval College,King William Walk,Greenwich,NA,Greenwich,www.â€‹ornc.â€‹org,1.00E+11,E09000011,Greenwich Park,E05014081,51.48245234,-0.004804325,538637.8057,177831.3052
+museum,Royal College of Music Museum of Instruments,Prince Consort Rd,Kensington,NA,Westminster,www.â€‹rcm.â€‹ac.â€‹uk/â€‹visit/â€‹museum/â€‹,1.00E+11,E09000033,Knightsbridge & Belgravia,E05013797,51.49876874,-0.175312754,526753.831,179336.82
+museum,The London Museum of Water and Steam,Green Dragon Lane,Brentford,NA,Hounslow,www.â€‹waterandsteam.â€‹org.â€‹uk,1.00E+11,E09000018,Chiswick Riverside,E05013611,51.48854503,-0.288952709,518892.881,178009.4701
+museum,"Hillingdon Local Studies, Archives and Museum",Central Library,14-16 High Street,Uxbridge,Hillingdon,https://www.hillingdon.gov.uk/history,1.00E+11,E09000017,Uxbridge,E05013580,51.54468289,-0.47672958,505726.4508,183964.381
+museum,National Gallery,Trafalgar Square,NA,NA,Westminster,http://www.nationalgallery.org.uk/,1.00E+11,E09000033,St James's,E05013806,51.50858667,-0.126076999,530143.1916,180514.9111
+museum,Benjamin Franklin House,36 Craven Street,NA,NA,Westminster,http://www.benjaminfranklinhouse.org/,1.00E+11,E09000033,St James's,E05013806,51.50713046,-0.123312015,530339.2146,180357.895
+museum,British Dental Association Museum,64 Wimpole St,Marylebone,NA,Westminster,https://bda.org/museum,1.00E+11,E09000033,Marylebone,E05013801,51.51806617,-0.147037043,528662.0196,181532.0152
+museum,Hogarth House,25 Hartington Road,NA,NA,Hounslow,http://www.hounslow.info/arts-culture/historic-houses-museums/hogarth-house/#,1.00E+11,E09000018,Chiswick Homefields,E05013610,51.48650733,-0.25341912,521365.1717,177841.1027
+museum, Bruce Castle Museum & Archives,Bruce Castle Museum,Lordship Lane,NA,Haringey,http://www.haringey.gov.uk/leisure/brucecastlemuseum,1.00E+11,E09000014,Bruce Castle,E05013587,51.59864748,-0.073849803,533503.6779,190624.0134
+museum,Down House,Down House,Luxted Road,Â Downe,Bromley,www.english-heritage.org.uk/darwin/,1.00E+11,E09000006,Darwin,E05013996,51.33089928,0.055057521,543266.5068,161093.6913
+museum,Museum of London,150 London Wall,NA,NA,City of London,http://www.museumoflondon.org.uk/london-wall/#,2.00E+11,E09000001,Bassishaw,E05009290,51.51728697,-0.094482179,532310.4243,181538.9905
+museum,Barbican Art Gallery,Level 3,Barbican Centre,Silk Street,City of London,http://www.barbican.org.uk/artgallery,2.00E+11,E09000001,Cripplegate,E05009302,51.51944948,-0.092517837,532440.4365,181783.0158
+museum,British Red Cross Museum and Archives,UK Office 44 Moorfields,NA,NA,City of London,http://www.redcross.org.uk/museumandarchives,2.00E+11,E09000001,Coleman Street,E05009299,51.51858074,-0.087065249,532821.2374,181696.2928
+museum,Guildhall Art Gallery and London's Roman Amphitheatre,Guildhall Art Gallery Cultural and Visitor Develop,NA,NA,City of London,http://www.guildhallartgallery.cityoflondon.gov.uk/,2.00E+11,E09000001,Coleman Street,E05009299,51.51505639,-0.09004913,532624.4597,181298.971
+museum,Hayward Gallery,Southbank Centre,Belvedere Road,NA,Lambeth,http://ticketing.southbankcentre.co.uk/venues/hayward-gallery#,2.00E+11,E09000022,Waterloo & South Bank,E05014118,51.50562082,-0.113862479,530999.2883,180206.877
+museum,Florence Nightingale Museum,St. Thomas Hospital,2 Lambeth Palace Road,NA,Lambeth,http://www.florence-nightingale.co.uk/,2.00E+11,E09000022,Waterloo & South Bank,E05014118,51.49953929,-0.115424879,530908.2844,179527.8141
+museum,The View (Epping Forest Collection),6 Rangers Road,,Chingford,Waltham Forest,www.cityoflondon.gov.uk/things-to-do/green-spaces/epping-forest/Pages/default.aspx,2.00E+11,E09000031,Chingford Green,E05013885,51.63389537,0.019126479,539834.4036,194717.532
+museum,William Morris Gallery,Lloyd Park House,531 Forest Rd,Walthamstow,Waltham Forest,http://wmgallery.org.uk/,2.00E+11,E09000031,William Morris,E05013902,51.59079662,-0.018781165,537341.034,189852.9379
+museum,Cutty Sark,King William Walk,Greenwich,NA,Greenwich,http://www.rmg.co.uk/cuttysark,2.00E+11,E09000011,Greenwich Park,E05014081,51.48229651,-0.007899992,538423.3348,177808.1263
+museum,HMS Belfast,Uxbridge,Middlesex,NA,Southwark,http://iwm.org.uk/,2.00E+11,E09000028,London Bridge & West Bermondsey,E05011104,51.50607879,-0.07987744,533356.3966,180319.1307
+museum,Imperial War Museum London,Lambeth Rd,NA,NA,Southwark,http://london.iwm.org.uk/,2.00E+11,E09000028,St George's,E05011114,51.49549623,-0.106744975,531522.3553,179093.769
+museum,The Old Operating Theater Museum and Herb Garret,9A St Thomasâ€™ Street,NA,NA,Southwark,http://www.oldoperatingtheatre.com/,2.00E+11,E09000028,London Bridge & West Bermondsey,E05011104,51.50449961,-0.086844633,532877.4967,180130.8567
+museum,Brunel Museum,Brunel Engine House,Railway Avenue,Rotherhithe,Southwark,www.brunel-museum.org.uk/,2.00E+11,E09000028,Rotherhithe,E05011112,51.50108215,-0.051351513,535350.7656,179815.8463
+museum,Dulwich Picture Gallery,Gallery Road,Dulwich Village,NA,Southwark,http://www.dulwichpicturegallery.org.uk/,2.00E+11,E09000028,Dulwich Village,E05011100,51.4454594,-0.084837608,533188.5015,173569.2424
+museum,Osterley Park and House,Jersey Road,Isleworth,NA,Hounslow,https://www.nationaltrust.org.uk/osterley-park-and-house?p=1356312744250,2.00E+11,E09000018,Osterley & Spring Grove,E05013626,51.48898096,-0.350182958,514640.9053,177960.4169
+museum,Gunnersbury Park Museum,Gunnersbury Park,Popes Ln,NA,Hounslow,www.hounslow.info â€º Arts & Culture â€º Historic Houses & Museums,2.00E+11,E09000018,Chiswick Gunnersbury,E05013609,51.49903389,-0.284755866,519156.9035,179182.6781
+museum,The Cartoon Museum,63 Wells Street,Fitzrovnia,W1A 3AE,Westminster,https://www.cartoonmuseum.org/,10033643787,E09000033,West End,E05013808,51.517581,-0.13865023,529245.2533,181492.829
+museum,Quentin Blake Centre for Illustration ,"Rear of, 28 Amwell St",,,Islington,https://www.qbcentre.org.uk/,No UPRN found,E09000019,Clerkenwell,E05013702,51.52836,-0.10994,531206.1586,182742.507
+museum,Photographer's Gallery,16-18 Ramillies Street,London,W1F 7LW,Westminster,https://thephotographersgallery.org.uk/,10033542105,E09000033,West End,E05013808,51.514925,-0.13904674,529225.2587,181196.7789
+museum,Whitechapel Gallery,77-82 Whitechapel High Street,London,E17QX,Tower Hamlets,https://www.whitechapelgallery.org/,6011122,E09000030,Spitalfields & Banglatown,E05009333,51.516172,-0.07038992,533985.1773,181458.8395
+museum,Camera Museum,44 Museum Street,London,WC1A 1LY,Camden,https://www.cameramuseum.uk/museum-gallery,5110142,E09000007,Bloomsbury,E05013653,51.517682,-0.125256,530174.2396,181527.7792
+museum,The Postal Museum,15-20 Phoenix Place,London,WC1X 0DA,Camden,https://www.postalmuseum.org/,5191953,E09000007,Holborn & Covent Garden,E05013662,51.52476,-0.11408144,530929.2212,182334.7735
+museum,Museum of Funeral History,"	29-31 Rosebery Avenue",London,EC1R 4SL,Islington,https://www.dignityfunerals.co.uk/funeral-directors/locations/england/london/clerkenwell/29---31-roseber,5300079668,E09000019,Clerkenwell,E05013702,51.524095,-0.11132672,531122.2196,182265.7528
+museum,Antique Breadboard Museum,17 Lifford Street,London,SW15 1NY,Wandsworth,https://antiquebreadboards.com/,1.00E+11,E09000032,Thamesfield,E05014022,51.463695,-0.21839674,523858.3635,175362.906
+museum,London Mithraeum,12 Walbrook,London,EC4N 8AA,City of London,https://www.londonmithraeum.com/,95514174,E09000001,Cordwainer,E05009300,51.512711,-0.090813816,532578.2115,181036.7768
+museum,Turner's House,40 Sandycoombe Road,Twickenham,TW1 2LR,Richmond upon Thames,https://turnershouse.org/,1.00E+11,E09000027,Twickenham Riverside,E05013789,51.45381,-0.31622272,517088.4431,174102.9731
+museum,Eel Pie Island Museum,1-3 Richmond Road,Twickenham,TW1 3AB,Richmond upon Thames,https://www.eelpiemuseum.co.uk/,1.00E+11,E09000027,Twickenham Riverside,E05013789,51.448361,-0.3256336,516448.4725,173482.0218
+museum,Vagina Museum,18 Victoria Park Square,Chalk Farm Road,E2 9PF,Tower Hamlets,https://www.vaginamuseum.co.uk/,See notes,E09000030,Bethnal Green,E05009317,51.52876,-0.05318,535141.9325,182890.3113
+museum,Swendeborg Society Museum,20-21 Bloomsbury Way,London,WC1A 2TH,Camden,https://www.swedenborg.org.uk/,5088225,E09000007,Bloomsbury,E05013653,51.518012,-0.12286419,530339.2383,181568.7286
+museum,Biggin Hill Memorial Museum,Main Road,Kent,TN16 3EJ,Bromley,https://bhmm.org.uk/,10070018882,E09000006,Biggin Hill,E05013989,51.327177,0.02357799,541085.0099,160618.8371
+museum,Stanley Picker Gallery,Kingston School of Art,"Grange Road
+Kingston upon Thames",KT1 2QJ,Kingston upon Thames,https://www.stanleypickergallery.org/,128036412,E09000021,Kingston Town,E05013938,51.40501,-0.29828949,518460.4861,168704.9847
+museum,Studio Voltaire,1A Nelsons Row,London,SW4 7JR,Lambeth,https://www.studiovoltaire.org/,1.00E+11,E09000022,Clapham East,E05014100,51.462095,-0.13461766,529682.236,175329.8335
+museum,South London Gallery,65-67 Peckham Rd,London,SE5 8UH,Southwark,https://www.southlondongallery.org/,2.00E+11,E09000028,St Giles,E05011115,51.474285,-0.079775561,533456.22,176783.841
+museum,Matt's Gallery,92 Webster Road,London,SE16 4DF,Southwark,https://www.mattsgallery.org/,2.00E+11,E09000028,North Bermondsey,E05011106,51.495482,-0.062864801,534568.1987,179171.8881
+museum,Lake Gallery (Southwark Park Galleries,"1 Park Approach, Southwark Park",London,SE16 2UA,Southwark,https://southwarkparkgalleries.org/,10000811264,E09000028,Rotherhithe,E05011112,51.494147,-0.053931951,535192.1915,179039.8886
+museum,Dilston Gallery (Southwark Park Gallery),Southwark Park Rd,London,SE16 2DD,Southwark,https://southwarkparkgalleries.org/,2.00E+11,E09000028,North Bermondsey,E05011106,51.491814,-0.054290569,535174.1987,178779.7975
+museum,Nunnery Gallery,181 Bow Rd,Bow,E3 2SJ,Tower Hamlets,https://bowarts.org/nunnery,6128627,E09000030,Bow East,E05009319,51.52892,-0.017877042,537590.0933,182973.8021
+museum,Auto Italia,44 Bonner Road,London,E2 9JS,Tower Hamlets,https://autoitaliasoutheast.org/,6169839,E09000030,St Peter's,E05009331,51.532367,-0.052446491,535182.1271,183292.7758
+museum,Peer UK,97-99 Hoxton Street,London,N1 6QL,Hackney,https://www.peeruk.org/,1.00E+11,E09000012,Hoxton East & Shoreditch,E05009377,51.529808,-0.080496648,533244.175,182956.724
+museum,Autograph,Rivington Place,London,EC2A 3BA,Hackney,https://autograph.org.uk/,1.00E+11,E09000012,Hoxton East & Shoreditch,E05009377,51.526446,-0.079455921,533326.1773,182584.7603
+museum,New Contemporaries,Rich Mix,35-47 Bethnal Green Road,E1 6LA,Tower Hamlets,https://www.newcontemporaries.org.uk/,6150258,E09000030,Weavers,E05009335,51.524358,-0.073301807,533759.1701,182363.8052
+museum,SPACE Ilford,10 Oakfield Road,Ilford,IG1 1ZJ,Redbridge,https://spacestudios.org.uk/visit-space-ilford/,10094819396,E09000026,Ilford Town,E05011246,51.558472,0.074540907,543907.1609,186437.7799
+museum,Gasworks,155 Vauxhall Street,London,SE11 5RH,Lambeth,https://gasworks.org.uk/,1.00E+11,E09000022,Oval,E05014108,51.485134,-0.11545759,530947.2607,177925.8748
+museum,Institute of International Visual Arts,Stuart Hall Library,16 John Islip Street,SW1P 4JU,Westminster,https://iniva.org/library/,10033569512,E09000033,Vincent Square,E05013807,51.490553,-0.12926452,529973.2766,178503.8918
+museum,Cubitt Artists,8 Angel Mews,London,N1 9HH,Islington,https://www.cubittartists.org.uk/,10012791474,E09000019,Barnsbury,E05013698,51.532348,-0.10787081,531338.2085,183189.6861
+museum,Institute of Contemporary Arts,"The Mall, St. James's",", London ",SW1Y 5AHWestminste,Westminster,https://www.ica.art/,1.00E+11,E09000033,St James's,E05013806,51.506388,-0.13092159,529813.2614,180261.821
+museum,Serpentine South Gallery,Kensington Gardens,London,W2 3XA,Westminster,https://www.serpentinegalleries.org/,10033534401,E09000033,Lancaster Gate,E05013798,51.504789,-0.17500755,526758.3139,180006.8102
+museum,Serpentine North Gallery,West Carriage Drive,London,W2 2AR,Westminster,https://www.serpentinegalleries.org/,See notes,E09000033,Lancaster Gate,E05013798,51.50704,-0.1713,527009.3547,180263.5463
+museum,The Showroom,63 Penfold Street,London,NW8 8PQ,Westminster,https://www.theshowroom.org/,1.00E+11,E09000033,Church Street,E05013794,51.52345,-0.17280564,526859.2848,182085.7575
+museum,Camden Art Centre,Arkwright Road,London,NW3 6DG,Camden,https://camdenartcentre.org/,5090703,E09000007,Frognal,E05013657,51.55125,-0.18349077,526041.2607,185158.7291
+museum,LUX,Dartmouth Park Hill,London,N19 5JF,Camden,https://lux.org.uk/,5143559,E09000007,Highgate,E05013661,51.568341,-0.14305657,528796.2214,187129.6762
+museum,180 The Strand,Temple,London,WC2R 1EA,Westminster,https://www.180thestrand.com/,1.00E+11,E09000033,St James's,E05013806,51.512421,-0.11510992,530893.2349,180960.832
+museum,Cabinet Gallery,132 Tyers Street,Vauxhall Pleasure Gardens,SE11 5HS,Lambeth,https://www.cabinet.uk.com/,10093057125,E09000022,Vauxhall,E05014117,51.487618,-0.11950352,530659.2656,178194.876
+museum,Goldsmiths Centre for Contemporary Art,"St James’, New Cross",London,SE14 6AD,Lewisham,https://goldsmithscca.art/,1.00E+11,E09000023,Brockley,E05013716,51.474144,-0.035401153,536538.2101,176849.958
+museum,Mall Galleries,The Mall,London,SW1Y 5AS,Westminster,https://www.mallgalleries.org.uk/,1.00E+11,E09000033,St James's,E05013806,51.506709,-0.13017355,529864.2597,180298.8424
+museum,hARTslane,17 Harts Lane,New Cross Gate,SE14 5UP,Lewisham,https://www.hartslane.org/,10023231445,E09000023,New Cross Gate,E05013728,51.475565,-0.042943472,536010.2151,176993.9366
+museum,Candid Arts Centre,3 Torrens Street,London,EC1V 1NQ,Islington,https://candidarts.wordpress.com/,5300092107,E09000019,St Peter's & Canalside,E05013711,51.532151,-0.10512514,531529.2047,183172.7095
+museum,Lewisham Arthouse,140 Lewisham Way,London,SE14 6PD,Lewisham,http://www.lewishamarthouse.org.uk/,1.00E+11,E09000023,Brockley,E05013716,51.471483,-0.030634187,536877.2105,176562.957
+museum,Saatchi Gallery,"Duke of York's HQ, King's Road",London,SW3 4RY,Kensington and Chelsea,https://www.saatchigallery.com/,217110596,E09000020,Royal Hospital,E05009403,51.490723,-0.15880202,527922.3129,178470.8163
+museum,White Cube Bermondsey,144 – 152 Bermondsey Street ,London,SE1 3TQ,Southwark,https://whitecube.com/,2.00E+11,E09000028,London Bridge & West Bermondsey,E05011104,51.499449,-0.082680195,533181.2198,179576.7906
+museum,White Cube Mason's Yard,"25-26 Masons Yard, St. James's",London,SW1Y 6BU,Westminster,https://whitecube.com/,10033550744,E09000033,St James's,E05013806,51.507612,-0.13718321,529375.2656,180386.854
+museum,Bankside Gallery,48 Hopton Street,London,SE1 9JH,Southwark,https://www.banksidegallery.com/,2.00E+11,E09000028,Borough & Bankside,E05011095,51.508191,-0.10096046,531887.2265,180515.8309
+museum,Jerwood Space,171 Union Street,London,SE1 0LN,Southwark,https://jerwoodarts.org/,2.00E+11,E09000028,Borough & Bankside,E05011095,51.50362,-0.099118829,532028.2292,180010.8527
+museum,Islington Museum,245 St John Street,London,EC1V 4NB,Islington,https://www.islington.gov.uk/libraries-arts-and-heritage/heritage/islington-museum,5300084848,E09000019,Clerkenwell,E05013702,51.526486,-0.10455305,531585.2096,182543.7834
+museum,The Mosaic Rooms,226 Cromwell Road,,SW5 0SW,Kensington and Chelsea,https://mosaicrooms.org/,See notes,E09000020,Abingdon,E05009388,51.49487,-0.19535,525373.7856,178868.799
+museum,Arts Council Collection,Southbank Centre,Belvedere Road,SE1 8XX,Lambeth,https://artscouncilcollection.org.uk,No UPRN found,E09000022,Waterloo & South Bank,E05014118,51.50608,-0.1163,530828.8176,180253.5822
+museum,Emery Walker's House,7 Hammersmith Terrace,London,W6 9TS ?,Hammersmith and Fulham,https://www.emerywalker.org.uk/,34007395,E09000013,Ravenscourt,E05013746,51.48983,-0.24244193,522118.4126,178228.8209
+museum,Queen's House,Romney Road,London,SE10 9NF,Greenwich,https://www.rmg.co.uk/queens-house,1.00E+11,E09000011,Greenwich Park,E05014081,51.481337,-0.004487344,538663.1984,177707.8798
+museum,Royal Observatory Greenwich,Blackheath Avenue,London,SE10 8XJ,Greenwich,https://www.rmg.co.uk/royal-observatory,10010200750,E09000011,Greenwich Park,E05014081,51.477346,-0.000888495,538925.214,177270.898
+museum,Chiswick House & Gardens,Burlington Lane,London,W4 2RP,Hounslow,https://chiswickhouseandgardens.org.uk/,2.00E+11,E09000018,Chiswick Homefields,E05013610,51.48376,-0.25866216,521008.4254,177526.934
+museum,Museum of Brands,111 – 117 Lancaster Road,Notting Hill,W11 1QT,Kensington and Chelsea,https://museumofbrands.com/,See notes,E09000020,Notting Dale,E05009399,51.5163,-0.21102,524227.7911,181225.1639
+museum,Pitzhanger Manor & Gallery,Mattock Lane,London,W5 5EQ,Ealing,https://www.pitzhanger.org.uk/,12141314,E09000009,Walpole,E05013541,51.510907,-0.3071148,517574.4521,180466.9043
+museum,Garden Museum,5 Lambeth Palace Road,London,SE1 7LB,Lambeth,https://gardenmuseum.org.uk/,1.00E+11,E09000022,Waterloo & South Bank,E05014118,51.495048,-0.12022058,530588.2664,179019.8213
+museum,Spencer House,27 St James’s Place,London,SW1A 1NR,Westminster,https://spencerhouse.co.uk/,10033571672,E09000033,St James's,E05013806,51.505151,-0.1402519,529169.2746,180107.773
+museum,Apsley House (The Wellington Collection),149 Piccadilly,Hyde Park Corner,W1J 7NT,Westminster,https://www.wellingtoncollection.co.uk/,1.00E+11,E09000033,West End,E05013808,51.50341,-0.15186432,528368.2907,179893.7607
+museum,Syon House & Gardens,Syon Park,Brentford,TW8 8JF,Hounslow,https://www.syonpark.co.uk/,No UPRN found,E09000018,Syon & Brentford Lock,E05013627,51.4768,-0.31249,517288.9104,176665.4983
+museum,Westminster Abbey Library,East Cloister,London,SW1P 3PA,Westminster,https://www.westminster-abbey.org/about-the-abbey/library-research/library-collection,1.00E+11,E09000033,St James's,E05013806,51.499003,-0.12742012,530077.2693,179446.813
+museum,Lambeth Palace Library,15 Lambeth Palace Road,London,SE1 7JT,Lambeth,https://lambethpalacelibrary.org/,10094053854,E09000022,Waterloo & South Bank,E05014118,51.497656,-0.1185717,530695.2619,179312.7728
+museum,HQS Wellington,"Temple Stairs, Victoria Embakment",London,WC2R 2PN,Westminster,https://www.thewellingtontrust.org/,1.00E+11,E09000033,St James's,E05013806,51.510633,-0.11241675,531085.235,180766.821
+museum,The Chocolate Museum,187 Ferndale Rd,London,NA,Lambeth,https://www.thechocolatemuseum.co.uk/,2.00E+11,E09000022,Brixton North,E05014096,51.463925,-0.11630269,530949.2213,175565.8968
+museum,Van Gogh House London,87 Hackford Road,London,NA,Lambeth,https://vangoghhouse.co.uk/,1.00E+11,E09000022,Stockwell East,E05014110,51.474509,-0.11517551,530997.2382,176744.8625
+museum,Stour Gallery,258 Kingsland road,London,NA,Hackney,https://www.stourgalleries.co.uk/,1.00E+11,E09000012,Haggerston,E05009375,51.537312,-0.07631648,533512.1535,183798.8185
+museum,Madame Tussauds,Marylebone Rd,London,NA,Westminster,https://www.madametussauds.com/london/,1.00E+11,E09000033,Regent's Park,E05013805,51.522965,-0.15505127,528092.266,182062.7257
+museum,The Sherlock Holmes Museum,221b Baker St,London,NA,Westminster,https://www.sherlock-holmes.co.uk/,1.00E+11,E09000033,Regent's Park,E05013805,51.523749,-0.15858017,527845.2688,182143.7421
+museum,San Mei Gallery,39a Loughborough Road,NA,NA,Lambeth,https://www.sanmeigallery.co.uk/,10094054829,E09000022,Myatt's Fields,E05014107,51.470868,-0.10854377,531468.2266,176351.8552
+museum,Vigo Gallery,7-8 Masons Yard,St. James's,NA,Westminster,https://www.vigogallery.com/,10033538227,E09000033,St James's,E05013806,51.507811,-0.13730475,529366.268,180408.7684
+museum,Thaddeus Ropac,Ely House,37 Dover Street,NA,Westminster,https://ropac.net/,1.00E+11,E09000033,West End,E05013808,51.508497,-0.14253664,529001.2713,180475.8261
+museum,The Stone  Space,6 Church Lane,Leytonstone,NA,Waltham Forest,www.stonespace.gallery,1.00E+11,E09000031,Leytonstone,E05013897,51.568201,0.010583682,539444.1144,187395.7761
+museum,Chelsea Physic Garden,66 Royal Hospital Road,Chelsea,NA,Kensington and Chelsea,https://www.chelseaphysicgarden.co.uk/,217102618,E09000020,Royal Hospital,E05009403,51.484858,-0.16268225,527669.3181,177811.8523
+museum,London Transport Museum,The Piazza ,London,NA,Westminster,https://www.ltmuseum.co.uk/,10033620581,E09000033,St James's,E05013806,51.512123,-0.12124717,530468.2441,180916.7456
+museum,Charles Dickens Museum,48-49 Doughty St,London,NA,Camden,https://dickensmuseum.com/,10092001640,E09000007,Holborn & Covent Garden,E05013662,51.523599,-0.11626288,530781.2244,182201.7727
+museum,The Mill @ Coppermill,7-11 Coppermill Lane,Walthamstow,NA,Waltham Forest,www.themille17.org,1.00E+11,E09000031,St James,E05013899,51.581733,-0.034430334,536284.1714,188815.7485
+museum,Guildhall Art Gallery,Basinghall St,London,NA,City of London,http://cityoflondon.gov.uk/guildhallartgallery,2.00E+11,E09000001,Bassishaw,E05009290,51.515566,-0.091660082,532511.2102,181352.7227
+museum,The Arab British Centre,"1 Gough Sqaure, EC4A 3DE",,,City of London,https://www.arabbritishcentre.org.uk,1.00E+11,E09000001,Castle Baynard,E05009297,51.51514,-0.10807957,531373.2264,181275.7706
+museum,Oxford House in Bethnal Green,"Derbyshire Street, London E2 6HG",,,Tower Hamlets,https://www.oxfordhouse.org.uk,6089004,E09000030,St Peter's,E05009331,51.526367,-0.061510951,534571.1484,182608.8377
+museum,Rosetta Arts,"1 HAMILTON RD, LONDON E15 3AE",,,Newham,https://rosettaarts.org,46034253,E09000025,Canning Town North,E05013906,51.524916,0.007076147,539333.0971,182575.7346
+museum,JW3,"341-351 Finchley Road, London, NW3 6ET",,,Camden,https://www.jw3.org.uk,5164899,E09000007,West Hampstead,E05013671,51.550911,-0.18481686,525950.2608,185118.7487
+museum,Usurp Art,140 Vaughan Road,,,Harrow,http://www.usurp.org.uk/exhibitions/#,1.00E+11,E09000015,West Harrow,E05013563,51.579041,-0.34938282,514470.4796,187976.801
+museum,University of the Arts London Gallery,272 High Holborn,,,Camden,http://www.arts.ac.uk/gallery.htm#,5154466,E09000007,Holborn & Covent Garden,E05013662,51.517765,-0.1163883,530789.2304,181552.8044
+museum,Brunei Gallery,SOAS,Thornhaugh Street,,Camden,http://www.soas.ac.uk/gallery/#,5086881,E09000007,Bloomsbury,E05013653,51.52235,-0.12925904,529883.2377,182039.7592
+museum,L Ron Hubbard's Fitzroy House,37 Fitzroy St,,,Camden,http://www.fitzroyhouse.org/#,5088512,E09000007,Bloomsbury,E05013653,51.522499,-0.13921366,529192.2491,182038.7229
+museum,Four Corners Gallery,121 Roman Road,,,Tower Hamlets,http://www.fourcornersfilm.co.uk/gallery#,6039056,E09000030,Bethnal Green,E05009317,51.52881,-0.04888,535440.0357,182903.8124
+museum,Chisenhale Gallery,64 Chisenhale Road,,,Tower Hamlets,http://www.chisenhale.org.uk/#,6146768,E09000030,Bow West,E05009320,51.533143,-0.039595359,536071.1105,183402.8564
+museum,Bhavan Art Gallery,4a Castletown Road,,,Hammersmith and Fulham,http://www.bhavan.net/art-gallery#,34140084,E09000013,West Kensington,E05013751,51.489763,-0.20706715,524574.3698,178280.9074
+museum,Bethlem Gallery,Bethlem Royal Hospital,Monks Orchard Road,,Bromley,http://bethlemgallery.com/#,10003615210,E09000006,Kelsey & Eden Park,E05013999,51.38084,-0.02937,537236.0218,166485.8388
+museum,The Aram Gallery,110 Drury Lane,,,Westminster,http://www.thearamgallery.org/#,10033550729,E09000033,St James's,E05013806,51.5133,-0.11885,530631.2105,181051.901
+museum,Queen's Gallery,Buckingham Palace Road,,,Westminster,http://www.royalcollection.org.uk/default.asp?action=article&ID=32#,10033569645,E09000033,St James's,E05013806,51.499715,-0.14280725,529007.2856,179498.7814
+museum,Pollock's Toy Museum,1 Scala Street,,,Camden,https://www.pollockstoymuseum.co.uk/,10091857645,E09000007,Bloomsbury,E05013653,51.520333,-0.1353092,529469.2474,181804.7553
+museum,ASC Gallery,"Taplow House,",Thurlow Street,,Southwark,http://www.ascstudios.co.uk/asc-gallery/#,10093339547,E09000028,Faraday,E05011102,51.48902,-0.08722,532896.4403,178408.8389
+museum,Ambika P3,"Uni. of Westminster,",35 Marylebone Road,,Westminster,http://www.p3exhibitions.com/#,1.00E+11,E09000033,Marylebone,E05013801,51.522023,-0.15459925,528126.2661,181958.7645
+museum,Standpoint,45 Coronet Street,Hoxton,,Hackney,http://www.standpointlondon.co.uk/#,1.00E+11,E09000012,Hoxton East & Shoreditch,E05009377,51.52707,-0.081851649,533158.1793,182649.7867
+museum,Bow Street Police Museum,28 Bow Street,London,WC2E 7AW,Westminster,https://bowstreetpolicemuseum.org.uk/,See notes,E09000033,St James's,E05013806,51.51338,-0.12178,530427.6836,181055.5761
+museum,Southwark Heritage Centre and Walworth Library,145-147 Walworth Road,London,SE17 1RW,Southwark,https://www.southwark.gov.uk/libraries/southwark-heritage-centre-and-walworth-library,10094086689,E09000028,North Walworth,E05011107,51.491652,-0.097542326,532172.241,178682.8481
+museum,Migration Museum,Lewisham Shopping Centre,London, SE13 7HB,Lewisham,https://www.migrationmuseum.org/,See notes,E09000023,Lewisham Central,E05013727,51.46145,-0.01178,538216.9172,175482.6879
+museum,Crafts Council Gallery,44a Pentonville Road,London,N1 9BY,Islington,https://www.craftscouncil.org.uk/gallery,10093109726,E09000019,Barnsbury,E05013698,51.532143,-0.10854254,531292.2096,183165.6849
+museum,Harlesden High Street,57 High Street,Harlesden,NA,Brent,https://harlesdenhighstreet.com/,202086111,E09000005,Harlesden & Kensal Green,E05013501,51.535877,-0.24704201,521676.3552,183341.7178
+museum,Mimosa House,47 Theobalds Rd,London,NA,Camden,https://www.mimosahouse.co.uk/about,5087474,E09000007,Holborn & Covent Garden,E05013662,51.520009,-0.11840017,530643.2309,181798.7488
+museum,A.P.T Gallery,"6, Creekside",Deptford,London,Lewisham,aptstudios.org,1.00E+11,E09000023,Deptford,E05013719,51.476401,-0.021522751,537495.1998,177126.8971
+museum,QUEER BRITAIN,2 Granary Square,King's Cross,London,Camden,https://queerbritain.org.uk/,5158488,E09000007,King's Cross,E05013666,51.535701,-0.12398221,530211.2182,183533.771
+museum,Xxijra Hii,Enclave 4,50 Resolution Way,NA,Lewisham,https://xxijrahii.net/,10090784822,E09000023,Deptford,E05013719,51.478455,-0.024386142,537290.1944,177349.928
+museum,Gallery No.32,Manor Way,Bexley,,Bexley,https://www.galleryno32.co.uk/,No UPRN found,E09000004,St Mary's & St James,E05011229,51.43838545,0.1443602,549137.9828,173223.9666
+museum,Cygnet Sq (TACO!),"Cygnet Sq, SE2 9FA",,,Bexley,https://taco.org.uk/Cygnet-Square,10094789589,E09000004,Thamesmead East,E05011232,51.49767,0.12293996,547458.0597,179772.9622
+museum,Boston Manor House,"Boston Manor Road, Brentford TW8 9JX",,,Hounslow,https://www.hounslow.gov.uk/info/20174/heritage_and_arts/1855/historic_houses,10091692535,E09000018,Brentford West,E05013608,51.491907,-0.31842078,516838.4877,178335.9547
+museum,Hogarth's House,"Hogarth Lane, Great West Road, W4 2QN",,,Hounslow,https://hogarthshouse.org,1.00E+11,E09000018,Chiswick Homefields,E05013610,51.487015,-0.25502369,521252.4264,177894.9004
+museum,The Markfield Beam Engine and Museum,Markfield Road,,,Haringey,https://www.mbeam.org/,,E09000014,Seven Sisters,E05013598,51.581918,-0.061633,,
+museum,Furtherfield Gallery,The Mackenzie Pavilion,Finsbury Park,,Haringey,https://www.furtherfield.org/visit-us/,,E09000014,,,51.56974372,-0.101464232,,
+nightclub,Low Profile Studios,94 Vale Road,Harringay Warehouse District,,Haringey,,,E09000014,Seven Sisters,E05013598,51.57559472,-0.090303701,532431.0724,188030.5174
+nightclub,Rio Nightclub,Gaumont Palace,9A The Broadway,High Road,Haringey,https://rionightclub.co.uk/,,E09000014,Noel Park,E05013595,51.59656131,-0.109267969,531056.7388,190327.9093
+nightclub,Colours Hoxton,2-4 Hoxton Square London,,2-4 Hoxton Square ,Hackney,www.hoxtonsquarebar.com,10091942715,E09000012,Hoxton East & Shoreditch,E05009377,51.52699562,-0.080422675,533257.5149,182644.1174
+nightclub,Star Of Bethnal Green,359 Bethnal Green Road; Bethnal Green; London E2 6,Tower Hamlets,359 Bethnal Green ,Tower Hamlets,www.starofbethnalgreen.co.uk/,,E09000030,St Peter's,E05009331,51.5267,-0.06242,534507.1118,182644.1955
+nightclub,The Yard Theatre,Unit 2a Queens Yard,White Post Lane,Unit 2a Queens Yar,Tower Hamlets,www.theyardtheatre.co.uk,6077552,E09000030,Bow East,E05009319,51.54212896,-0.021790332,537278.9415,184435.313
+nightclub,The Eagle,349 Kennington Lane; Vauxhall; London SE11 5QY; Un,,,Lambeth,www.eaglelondon.com/,,E09000022,Vauxhall,E05014117,51.486307,-0.119347999,530673.8076,178049.3688
+nightclub,South Place Hotel,3 South Place,,,City of London,,,E09000001,Bishopsgate,E05009292,51.519,-0.084887379,532971.1096,181746.8699
+nightclub,Number 90,90 Wallis Road,Hackney,90 Wallis Road,Hackney,www.number90bar.co.uk,,E09000012,Hackney Wick,E05009374,51.5436,-0.021137394,537319.7909,184600.1175
+nightclub,Fabric,77a Charterhouse St; Clerkenwell; London EC1M 6HJ;,,77a Charterhouse S,Islington,www.fabriclondon.com,,E09000019,Clerkenwell,E05013702,51.519574,-0.102505,531747.213,181778.8445
+nightclub,Tipsy,"20 Stoke Newington Road, London N16 7XN",Hackney,20 Stoke Newington,Hackney,,1.00E+11,E09000012,Shacklewell,E05009382,51.551156,-0.074950999,533566.3495,185340.8118
+nightclub,Omeara,"6 O'Meara Street, SE1 1TE, London",,6 O'meara St Londo,Southwark,www.omearalondon.com,,E09000028,Borough & Bankside,E05011095,51.504143,-0.094603,532340.1118,180077.158
+nightclub,Fire,"39 Parry Street, South Lambeth Road, London, SW8 1",Lambeth,Arch 39-43 Parry S,Lambeth,www.firelondon.net/,1.00E+11,E09000022,Vauxhall,E05014117,51.484403,-0.123444001,530394.864,177830.3453
+nightclub,Bar 512,512 Kingsland Road,Hackney,512 Kingsland Road,Hackney,,,E09000012,London Fields,E05009381,51.5428,-0.074190376,533643.5306,184412.9917
+nightclub,Vfd,66 Stoke Newington Road; Dalston; London N16 7XB; ,Hackney,66 Stoke Newington,Hackney,,1.00E+11,E09000012,Shacklewell,E05009382,51.552572,-0.074649,533583.1457,185498.8254
+nightclub,Egg London,5-13 Vale Royal,London,5-13 Vale Royal,Islington,https://www.egglondon.co.uk,,E09000019,Caledonian,E05013700,51.541751,-0.125187999,530110.3472,184204.3936
+nightclub,Heaven,11 The Arches; Villiers St; Charing Cross; London ,Villiers Street,11 The Arches,Westminster,www.heavennightclub-london.com,,E09000033,St James's,E05013806,51.508087,-0.124121999,530280.2784,180462.8223
+nightclub,The Glory,281 Kingsland Road,Hackney,281 Kingsland Road,Hackney,www.theglory.co,1.00E+11,E09000012,Haggerston,E05009375,51.53568418,-0.075528879,533571.5363,183619.2385
+nightclub,Maddox Club,"3-5 Mill Street, London, W1S 2AU",City Of Westminster,3-5 Mill St,Westminster,http://www.maddoxclub.com,1.00E+11,E09000033,West End,E05013808,51.513306,-0.141385,529067.5986,181012.6215
+nightclub,Under The Bridge,"Stamford Bridge, Fulham Road, London, SW6 1HS",Fulham,Stanford Bridge Fu,Hammersmith and Fulham,www.underthebridge.co.uk,,E09000013,Walham Green,E05013749,51.481432,-0.191557,525673.9844,177380.9624
+nightclub,Ministry Of Sound,"103 Gaunt Street, Elephant & Castle, London, SE1 6",Southwark,103 Gaunt Street,Southwark,www.club.ministryofsound.com,,E09000028,St George's,E05011114,51.49765,-0.099209,532039.2197,179346.8239
+nightclub,Rivoli Ballroom,"350 Brockley Road, SE4 2BY London",Lewisham,350 Brockley Road,Lewisham,www.rivoliballroom.com,1.00E+11,E09000023,Crofton Park,E05013718,51.45521,-0.037139,536473.9732,174741.2849
+nightclub,Tiger Tiger London,"29 The Haymarket, London, SW1Y 4SP",,,Westminster,www.tigertiger.co.uk,,E09000033,St James's,E05013806,51.509731,-0.132892,529667.0347,180630.0764
+nightclub,Bar A Bar,133-135 Stoke Newington Road; Stoke Newington; Lon,Hackney,133-135 Stoke Newi,Hackney,www.barabar.info/,1.00E+11,E09000012,Stoke Newington,E05009385,51.556337,-0.074701,533568.5304,185917.4053
+nightclub,Moustache Bar,58 Stoke Newington Road; Dalston; London N16 7XB; ,Hackney,58 Stoke Newington,Hackney,www.moustachebar.co.uk/,1.00E+11,E09000012,Shacklewell,E05009382,51.552327,-0.074798,533573.5325,185471.3087
+nightclub,Printworks,"1 Surrey Quays Road, London, SE16 7PJ, United King",,1 Surrey Quays Roa,Southwark,http://www.printworksuk.com,,E09000028,Surrey Docks,E05011117,51.497523,-0.043516,535905.1596,179434.5809
+nightclub,Ridley Road Market Bar,49 Ridley Road; London E8 2NP; United Kingdom,Hackney,49 Ridley Road,Hackney,www.ridleyroadmarketbar.com/,1.00E+11,E09000012,Dalston,E05009370,51.548193,-0.073243001,533693.433,185014.4432
+nightclub,Studio 338,338 Boord Street; Greenwich; London SE10 0PF; Unit,Greenwich,338 Tunnel Avenue,Greenwich,www.studio338.co.uk/,1.00E+11,E09000011,Greenwich Peninsula,E05014082,51.495442,0.00482,539266.455,179293.9984
+nightclub,Loop Bar & Nightclub,"19 Dering Street, London, W1S 1AH, UK",City Of Westminster,19 Dering Street,Westminster,www.theloopbar.co.uk/,1.00E+11,E09000033,West End,E05013808,51.514164,-0.145458,528782.5731,181100.8634
+nightclub,Tasty Bakery (Tasties),"207 Rye Lane, Peckham, London SE15 4TP",Southwark,207 Rye Lane,Southwark,,2.00E+11,E09000028,Rye Lane,E05011113,51.467718,-0.066488,534398.2575,176077.8911
+nightclub,Trafik,331 Old St; Hoxton; London EC1 9LE; United Kingdom,Hackney,331 Old Street,Hackney,www.trafik-london.com,1.00E+11,E09000012,Hoxton East & Shoreditch,E05009377,51.527011,-0.080557001,533248.1527,182645.583
+nightclub,The Lighthouse,Unit 1a 190 New North Road,Islington,Unit 1a 190 New No,Hackney,,10091889776,E09000012,Hoxton East & Shoreditch,E05009377,51.52564358,-0.078042927,533426.5337,182498.106
+nightclub,Xoyo,32-37 Cowper Street; Shoreditch; London EC2A 4AP; ,Islington,32-37 Cowper Stree,Islington,www.xoyo.co.uk,5300025027,E09000019,Bunhill,E05013699,51.525519,-0.085704,532895.4816,182470.3086
+nightclub,Basing House,25 Kingsland Road; Shoreditch; London E2 8AA; Unit,Hackney,25 Kingsland Road,Hackney,www.basinghouse.co.uk/,1.00E+11,E09000012,Hoxton East & Shoreditch,E05009377,51.52844,-0.078204,533407.189,182808.7784
+nightclub,Beduin,57-59 Charterhouse Street,Islington,57-59 Charterhouse,City of London,www.beduinbar.co.uk/smithfields,,E09000001,Farringdon Without,E05009305,51.5187,-0.101943545,531788.6861,181682.6653
+nightclub,McQueen,55-61 Tabernacle Street; Shoreditch; London EC2A 4,Islington,55-61 Tabernacle S,Islington,www.mcqueen-shoreditch.co.uk/,,E09000019,Bunhill,E05013699,51.524025,-0.08587,532888.3151,182303.872
+nightclub,Piccadilly Institute,The London Pavillion; Piccadilly; London W1V 9LA; ,Piccadilly,The London Pavilio,Westminster,www.piccadillyinstitute.com/,,E09000033,St James's,E05013806,51.510378,-0.133987,529589.2166,180700.0858
+nightclub,The Hoxton Pony,104-108 Curtain Rd,,104-108 Curtain Rd,Hackney,http://www.thehoxtonpony.com,10008241848,E09000012,Hoxton East & Shoreditch,E05009377,51.52491417,-0.078535012,533394.5311,182416.0972
+nightclub,Junction House,"578 Kingsland Road, London, E8 4AH",Hackney,578 Kingsland Road,Hackney,,1.00E+11,E09000012,Dalston,E05009370,51.545587,-0.075603,533537.4282,184720.3342
+nightclub,Nomad London,58 Old Street; Hoxton; London EC1V 9AJ; United Kin,Islington,58 Old Street,Islington,www.nomadlondon.com/,,E09000019,Bunhill,E05013699,51.524066,-0.095805,532199.0236,182290.4341
+nightclub,Ladybird / Basement Club,70 Upper Street; Islington; London N1 0NY; United ,Islington,70 Upper Street,Islington,www.ladybirdbar.co.uk,10091816806,E09000019,St Mary's & St James',E05013710,51.535991,-0.104013999,531595.198,183601.7197
+nightclub,Hootananny Brixton,"95 Effra Road, Brixton, London, SW2 1DF",Brixton,,Lambeth,https://www.hootanannybrixton.co.uk/,,E09000022,Herne Hill & Loughborough Junction,E05014104,51.455382,-0.113254,531185.4564,174621.3697
+nightclub,Porky's Wine Bar,"23-27 Sternhold Avenue, Streatham Hill, SW2 4PA",Lambeth,23-27 Sternhold Av,Lambeth,,1.00E+11,E09000022,Streatham Hill West & Thornton,E05014114,51.43846,-0.127680999,530231.2468,172713.9146
+nightclub,Brixton Jamm Limited,261 Brixton Rd,,,Lambeth,,1.00E+11,E09000022,Brixton North,E05014096,51.47028117,-0.110280436,531349.2983,176283.4847
+nightclub,The Steel Yard,13-16 Allhallows Lane,City Of London,13-16 Allhallows L,City of London,https://thesteelyard.london/,95510144,E09000001,Dowgate,E05009303,51.50948953,-0.08895602,532716.4746,180681.9123
+nightclub,Montezuma London Club,17 Harrington Road,Kensington And Chelsea,17 Harrington Road,Kensington and Chelsea,www.montezumalondon.com,217036855,E09000020,Courtfield,E05009393,51.49347152,-0.174155601,526848.8459,178749.7638
+nightclub,The London Reign,215-217 Piccadilly,City Of Westminster,215-217 Piccadilly,Westminster,,10033541003,E09000033,St James's,E05013806,51.50900894,-0.133381232,529635.1356,180548.9166
+nightclub,Vuvu Club,30 East Street,,30 East Street,Bromley,,10070003296,E09000006,Bromley Town,E05013991,51.40660746,0.017983696,540452.3971,169440.7961
+nightclub,Vision Video Bar,588 Kingsland Road,Hackney,588 Kingsland Road,Hackney,,10008291713,E09000012,Dalston,E05009370,51.54538817,-0.073878909,533657.5523,184701.3749
+nightclub,The Lighthouse Bar And Club,62 Rivington Street,Hackney,62 Rivington Stree,Hackney,,10091889776,E09000012,Hoxton East & Shoreditch,E05009377,51.52564358,-0.078042927,533426.5337,182498.106
+nightclub,Trapeze Bar,89 Great Eastern Street,Hackney,89 Great Eastern S,Hackney,www.trapezebar.co.uk,10091904454,E09000012,Hoxton East & Shoreditch,E05009377,51.52518388,-0.081825316,533165.5071,182440.0951
+nightclub,Fold,"Gillian House, Stephenson St, London E16 4SA, UK",Stephenson Street,Gillian House,Newham,https://www.fold.london,,E09000025,Canning Town North,E05013906,51.519032,0.003758,539120.8391,181915.1182
+nightclub,The George & Dragon,2 Blackheath Hill,,,Greenwich,http://www.georgedragon.com/,,E09000011,Greenwich Park,E05014081,51.4733623,-0.016543765,537850.1087,176798.3551
+nightclub,W London,"10 Wardour Street, Leicester Square, London, W1D 6",,,Westminster,http://www.westrockshotel.co.uk,10033615454,E09000033,St James's,E05013806,51.510266,-0.131580999,529756.4862,180691.8904
+nightclub,Union Bar,"Building 5, Chiswick Park, 566 Chiswick High Road,",,,Hounslow,www.faucetinn.com,1.00E+11,E09000018,Chiswick Gunnersbury,E05013609,51.496128,-0.272920001,519986.0361,178878.8424
+nightclub,Village Soho,81 Wardour Street,,,Westminster,,10033570802,E09000033,St James's,E05013806,51.51190632,-0.131778198,529738.1438,180873.9465
+nightclub,Colour Factory,"8 Queen's Yard, Hackney Wick, London E9 5EN",Hackney Wick,,Tower Hamlets,https://www.colourfactory.com,,E09000030,Bow East,E05009319,51.543183,-0.022663999,537215.1921,184550.8872
+nightclub,Mascara Bar,72 Stamford Hill; Stoke Newington; London N16 6XS,,,Hackney,http://www.mascarabar.co.uk,10091817946,E09000012,Cazenove,E05009368,51.567041,-0.072955,533658.2307,187110.9025
+nightclub,Press,"47 Whitcomb Street, London, WC2H 7DH",,,Westminster,http://www.sgul.ac.uk,1.00E+11,E09000033,St James's,E05013806,51.509824,-0.131516,529762.252,180642.8546
+nightclub,Thirst,"53 Greek St, Soho, London W1D 3DR, UK",,,Westminster,,10033593423,E09000033,West End,E05013808,51.514284,-0.131226999,529769.6348,181139.3234
+nightclub,Tramp,"40 Jermyn St, St. James's, London SW1Y 6DN",,,Westminster,www.tramp.co.uk/exclusive-hire.php,,E09000033,St James's,E05013806,51.508117,-0.137622999,529343.3172,180442.234
+nightclub,Vout-O-Reenee's,"The Crypt, 30 Prescot St, London E1 8BB, United Ki",,,Tower Hamlets,www.vout-o-reenees.com,6086724,E09000030,Whitechapel,E05009336,51.51139,-0.071967,533889.7769,180924.1886
+nightclub,E1,"110 Pennington Street, Wapping, London E1W 2BB",,110 Pennington Str,Tower Hamlets,https://e1ldn.co/our-story,,E09000030,St Katharine's & Wapping,E05009330,51.509058,-0.061663999,534611.5455,180683.7632
+nightclub,Mannequin Magazine,"378 Kingsland Road, London, E8 4AA",,,Hackney,,1.00E+11,E09000012,London Fields,E05009381,51.54116,-0.076307,533501.5587,184226.748
+nightclub,Floripa,"91-93 Great Eastern Street, Shoreditch, London EC2",,,Hackney,www.floripalondon.com,,E09000012,Hoxton East & Shoreditch,E05009377,51.525828,-0.083386,533055.3711,182508.8827
+nightclub,Soda Room,"Downstairs, The Botanist, Broadgate Circle, London",,,City of London,,,E09000001,Bishopsgate,E05009292,51.518972,-0.083281,533082.6351,181746.6762
+nightclub,Pryzm Kingston,"154 Clarence Street Kingston Upon Thames KT1 1QP, ",Kingston,154 Clarence Stree,Kingston upon Thames,https://www.pryzm.co.uk/club/kingston-upon-thames/,,E09000021,Kingston Town,E05013938,51.411524,-0.299859,518334.5237,169426.8241
+nightclub,Hoxton Basement,"12-18 Hoxton St, N1 6NG (Basement Entrance on Drys",,,Hackney,,,E09000012,Hoxton East & Shoreditch,E05009377,51.527985,-0.079147,533343.1103,182756.4624
+nightclub,Addictive Bar,28 Park Royal Road London NW10 7JW,,,Ealing,,12141434,E09000009,North Acton,E05013527,51.526758,-0.267182999,520303.5793,182294.4011
+nightclub,La Pollera Colora,"4-6 London Bridge Street, London, SE1 9SG",,,Southwark,,,E09000028,London Bridge & West Bermondsey,E05011104,51.505069,-0.087492,532830.9153,180192.9993
+nightclub,Peckham Audio,"133a Rye Lane, Peckham, London, SE15 4BQ",Peckham,,Southwark,https://www.peckhamaudio.co.uk/,,E09000028,Rye Lane,E05011113,51.469798,-0.068263999,534268.8039,176305.9278
+nightclub,Le Fez,"200b Upper Richmond Rd, Putney, London SW15 2SH, U",,200 Upper Richmond,Wandsworth,Home | Le Fez,,E09000032,East Putney,E05014011,51.460833,-0.216609,523990.2904,175047.67
+nightclub,Scotch,"13 Masons Yard, St James, London SW1A 1PL",,,Westminster,,,E09000033,St James's,E05013806,51.507769,-0.137021,529386.0774,180404.5991
+nightclub,Bar Rumba,36 Shaftesbury Avenue; Soho; London W1D 7EP; Unite,,36 Shaftesbury Ave,Westminster,https://barrumbalondon.com/,,E09000033,St James's,E05013806,51.511138,-0.133503999,529620.5753,180785.4532
+nightclub,Night Tales Loft,"207, 1 Westgate St, Hackney, London E8 3RL",,,Hackney,,,E09000012,London Fields,E05009381,51.537584,-0.057723,534800.7635,183863.1908
+nightclub,Salt Lounge,269 West End Lane,,,Camden,,5163150,E09000007,West Hampstead,E05013671,51.550528,-0.191586,525482.0186,185064.5331
+nightclub,Electric Ballroom,184 Camden High St; Camden Town; London NW1 8QP; U,London,184 Camden High St,Camden,https://www.electricballroom.co.uk/,5021260,E09000007,Camden Town,E05013655,51.539681,-0.143063001,528876.7018,183942.5999
+nightclub,Electrowerkz,7 Torrens Street; Islington; London EC1V 1NQ; Unit,Islington,7 Torrens Street,Islington,https://www.electrowerkz.co.uk,5300092109,E09000019,St Peter's & Canalside,E05013711,51.532528,-0.105192001,531523.4813,183214.5122
+nightclub,Koko,1a Camden High Street; Camden Town; London NW1 7JE,London,1A Camden High St,Camden,https://www.koko.co.uk/,,E09000007,Regent's Park,E05013668,51.534617,-0.138338,529218.6937,183387.803
+nightclub,Lafayette London,"11 Goods Way, Kings Cross, London N1C 4DP",Kings Cross,11 Goods Way,Camden,What’s On - Lafayette London,,E09000007,King's Cross,E05013666,51.534613,-0.125075999,530138.4644,183410.8402
+nightclub,Grow,98C Wallis Road; Main Yard; London E9 5LN,,,Hackney,www.grow-hackney.squarespace.com,,E09000012,Hackney Wick,E05009374,51.544161,-0.023633,537145.0638,184657.8281
+nightclub,The Garage,20-26 Highbury Corner,Islington,20-26 Highbury Cor,Islington,www.thegarage.london,10008978416,E09000019,Highbury,E05013704,51.54619942,-0.102130813,531696.3309,184740.3076
+nightclub,Biddle Bros,"88 Lower Clapton,  London, E5 0QR",Hackney,88 Lower Clapton R,Hackney,,1.00E+11,E09000012,Springfield,E05009383,51.571495,-0.066167001,534115.5808,187618.6311
+nightclub,Boom Boom Club,Sutton United Football Club The Borough Sports Gro,Gander Green Ln,Sutton United Foot,Sutton,www.feenstra.co.uk/boomboom,,E09000029,Sutton West & East Cheam,E05013768,51.36708629,-0.202794141,525205.5173,164646.3757
+nightclub,St. Moritz Club,159 Wardour Street; W1F 8WH,Wardour Street,159 Wardour St,Westminster,www.stmoritzclub.co.uk,10033622399,E09000033,West End,E05013808,51.514467,-0.135026,529505.5273,181152.9497
+nightclub,Grace (The)/Garage (The),20-22 Highbury Corner Highbury East,,20-22 Highbury Cor,Islington,www.thegrace.london,,E09000019,Highbury,E05013704,51.54624003,-0.10241761,531676.3288,184744.307
+nightclub,Moth Club,"Valette Street, London, Hackney, E9 6NU",Hackney,Hackney Trades Hal,Hackney,www.mothclub.co.uk,,E09000012,Homerton,E05009376,51.545251,-0.05465,534991.2128,184721.4416
+nightclub,Union Chapel,"Union Chapel, Compton Terrace, London N1 2UN",Islington,19a Compton Terrac,Islington,www.unionchapel.org.uk,10008975865,E09000019,Laycock,E05013708,51.544765,-0.102481,531676.1909,184580.1657
+nightclub,Redon,"Arch 289, Cambridge Heath Road, London, E2 9HA, UK",,,Tower Hamlets,,,E09000030,St Peter's,E05009331,51.532114,-0.05723,534851.1135,183255.8125
+nightclub,Scala,275 Pentonville Road,London,275 Pentonville Rd,Camden,www.scala.co.uk,0,E09000007,King's Cross,E05013666,51.5301846,-0.11904752,530569.222,182929.1276
+nightclub,93 Feet East,"The Old Truman Brewery, 150 Brick Lane; Shoreditch",London,150 Brick Ln Shore,Tower Hamlets,www.93feeteast.co.uk,,E09000030,Spitalfields & Banglatown,E05009333,51.521706,-0.072288999,533837.1993,182070.7515
+nightclub,Ain't Nothin' But...,20 Kingly Street,Soho,20 Kingly Street,Westminster,http://www.aintnothinbut.co.uk/,1.00E+11,E09000033,West End,E05013808,51.51247219,-0.137952896,529308.0963,180925.9537
+nightclub,Vortex Jazz Club,11 Gillett Square; De Beauvoir; London N16 8JH; Un,Hackney,11 Gillett Square,Hackney,https://www.vortexjazz.co.uk/,10091818908,E09000012,Dalston,E05009370,51.54932,-0.076517,533463.1452,185133.7853
+nightclub,100 Club,"100 Oxford Street, London, W1D 1LL",City Of Westminster,100 Oxford Street,Westminster,www.the100club.co.uk,10033540054,E09000033,West End,E05013808,51.516215,-0.135333,529479.2711,181346.7866
+nightclub,Dingwalls,Middle Yard; Camden Town; London NW1 8AB; United K,London,Middle Yard Camden,Camden,www.dingwalls.com,5084282,E09000007,Camden Town,E05013655,51.541357,-0.146086,528662.3457,184123.6579
+nightclub,Green Note,"106 Parkway, Camden, London NW1 7AN",Camden,106 Parkway,Camden,www.greennote.co.uk,5124523,E09000007,Camden Town,E05013655,51.537253,-0.145813,528692.8478,183667.7674
+nightclub,Oslo Hackney,"1a Amhurst Road, Hackney, London,  E8 1LL",,1A Amhurst Rd,Hackney,www.oslohackney.com,10008289187,E09000012,Hackney Central,E05009372,51.547982,-0.05752,534784.1614,185019.8405
+nightclub,Servant Jazz Quarters,"10a Bradbury Street , Dalston, N16 8JH",Hackney,10 Bradbury Street,Hackney,www.servantjazzquarters.com,10008302207,E09000012,Dalston,E05009370,51.548642,-0.076722001,533450.9128,185058.0162
+nightclub,Sebright Arms,34 Coate Street; Bethnal Green; London E2 9AG; Uni,Tower Hamlets,31-35 Coate Street,Tower Hamlets,www.sebrightarms.co.uk,6021840,E09000030,St Peter's,E05009331,51.532091,-0.063057,534447.0469,183242.5234
+nightclub,Village Underground,54 Holywell Lane; Shoreditch; London EC2A 3PQ; Uni,Hackney,54 Holywell Lane,Hackney,www.villageunderground.co.uk,10091784233,E09000012,Hoxton East & Shoreditch,E05009377,51.523788,-0.078034,533432.5757,182291.7791
+nightclub,229 The Venue,"229 Great Portland Street, Fitzrovia, London, W1W ",City Of Westminster,229 Great Portland,Westminster,www.229thevenue.com,1.00E+11,E09000033,West End,E05013808,51.522726,-0.14375,528876.9167,182055.9738
+nightclub,Gladstone Arms,64 Lant Street,Southwark,64 Lant Street,Southwark,www.thegladpub.co.uk,2.00E+11,E09000028,Chaucer,E05011098,51.50039049,-0.093530014,532425.4498,179661.8166
+nightclub,Jazz After Dark,9 Greek Street,Soho,9 Greek Street,Camden,http://www.jazzafterdark.co.uk/,10033551268,E09000007,Holborn & Covent Garden,E05013662,51.51398238,-0.129430233,529895.1588,181108.9676
+nightclub,Notting Hill Arts Club,21 Notting Hill Gate; Notting Hill; London W11 3JQ,Kensington And Chelsea,19-21 Notting Hill,Kensington and Chelsea,www.nottinghillartsclub.com,217059366,E09000020,Campden,E05009390,51.509376,-0.19455,525389.5063,180483.2617
+nightclub,Piano Works,113-117 Farringdon Rd,,,Islington,https://www.pianoworks.bar,10012787103,E09000019,Clerkenwell,E05013702,51.52235585,-0.106481583,531463.3271,182081.0435
+nightclub,Red Room (Ealing Jazz Club),42a The Broadway,,,Ealing,www.ealingclub.com/,12133012,E09000009,Ealing Broadway,E05013520,51.5139036,-0.300944676,517994.863,180810.0515
+nightclub,Troxy,"490 Commercial Road, London E1 0HX",Tower Hamlets,490 Commercial Roa,Tower Hamlets,www.troxy.co.uk,6027797,E09000030,Shadwell,E05009332,51.513147,-0.04332,535872.2861,181172.3446
+nightclub,Three Crowns,175 Stoke Newington High Street; Stoke Newington; ,Hackney,175 Stoke Newingto,Hackney,http://www.threecrownsn16.com,1.00E+11,E09000012,Stoke Newington,E05009385,51.562584,-0.073793001,533613.1954,186613.7431
+nightclub,Raffles Chelsea Ltd,25 Lonsdale Road,,,Richmond upon Thames,,,E09000027,Barnes,E05013774,51.48610998,-0.237250021,522488.8066,177823.8098
+nightclub,Scandals,82 Norwood High Street,,,Lambeth,,,E09000022,Knight's Hill,E05014106,51.42961998,-0.101360008,532086.0217,171778.0106
+nightclub,Medicine Bar & Nightclub,89 Great Eastern Street,,,Hackney,,,E09000012,Hoxton East & Shoreditch,E05009377,51.52590001,-0.08334998,533057.6598,182516.956
+nightclub,The Penthouse,1 Leicester Square,,,Westminster,,,E09000033,St James's,E05013806,51.51074,-0.130440016,529834.3116,180746.6212
+nightclub,The Aviary Cave Bar,164 Basin Approach,,,Tower Hamlets,,,E09000030,Limehouse,E05009326,51.51082,-0.033809999,536539.0894,180931.2648
+nightclub,The Planet Nollywood,319 Camberwell Road,,,Southwark,,,E09000028,Camberwell Green,E05011096,51.47607999,-0.093540028,532495.1489,176958.4561
+nightclub,Pier One,162 Bidder St N,,162 Bidder St N,Newham,Pier One Nightspot | London Nightclub | Afro-Beat Music Nightclub,,E09000025,Canning Town North,E05013906,51.51771001,0.003549986,539110.4365,181767.7243
+nightclub,Maggie's Club ,329 Fulham Rd,,329 Fulham Rd,Kensington and Chelsea,Maggie's Club - The 80s are back! Chelsea's premier eighties nightclub (maggies-club.com),,E09000020,Stanley,E05009405,51.48638998,-0.18005996,526458.5747,177952.0808
+nightclub,Unit 58 Ltd,5 Albert Street,,,Camden,,,E09000007,Regent's Park,E05013668,51.53458999,-0.141800009,528978.6692,183378.697
+nightclub,The Roxy,3-5 Rathbone Pl,Soho,3-5 Rathbone Pl,Westminster,http://www.theroxy.co.uk/,,E09000033,West End,E05013808,51.51669002,-0.133009991,529639.0949,181403.7179
+nightclub,Fantazya,69 Albert Embankment,,69 Albert Embankme,Lambeth,Fantazya | Arabic Night Club,,E09000022,Vauxhall,E05014117,51.48789998,-0.123220012,530400.4479,178219.6125
+nightclub,Ligthbox,6 S Lambeth Pl,,6 S Lambeth Pl,Lambeth,,,E09000022,Vauxhall,E05014117,51.48564999,-0.123489994,530388.1183,177968.9302
+nightclub,The Watershed,267 The Broadway,,,Merton,,,E09000024,Abbey,E05013810,51.41942,-0.194940018,525608.9636,170479.392
+nightclub,Libertine,2 Winsley Street,,,Westminster,,,E09000033,West End,E05013808,51.51594998,-0.138440039,529264.4523,181311.8283
+nightclub,The Cuckoo Club,Swallow Street,,Swallow Street,Westminster,https://www.thecuckooclub.com/,,E09000033,West End,E05013808,51.50990998,-0.137890019,529319.7124,180641.144
+nightclub,Zoo Bar,13-17 Bear Street,,,Westminster,,,E09000033,St James's,E05013806,51.51090998,-0.128979972,529935.1391,180768.1125
+nightclub,The Drumsheds,"Meridian Water, Argon Road, Enfield, N18 3BW",Argon Road,Meridian Water,Enfield,https://thedrumshedslondon.co.uk/,,E09000010,Upper Edmonton,E05013694,51.60921998,-0.042920037,535614.2423,191856.6741
+nightclub,The Big Chill Bar,The Old Truman Brewery,"14 Dray Walk, Shadwell",,Tower Hamlets,,,E09000030,Spitalfields & Banglatown,E05009333,51.52104002,-0.072070034,533854.3415,181997.0938
+nightclub,Paradise London,65 Albert Embankment,,65 Albert Embankme,Lambeth,,,E09000022,Vauxhall,E05014117,51.48789998,-0.123220012,530400.4479,178219.6125
+nightclub,Union,66 Albert Embankment,,66 Albert Embankme,Lambeth,Union :: Vauxhall :: London (clubunion.co.uk),,E09000022,Vauxhall,E05014117,51.48789998,-0.123220012,530400.4479,178219.6125
+nightclub,West Five Bar,"Popes Ln, S Ealing Rd, London W5 4NT",,,Ealing,,,E09000009,Ealing Common,E05013521,51.49905001,-0.30229996,517939.1556,179156.0958
+nightclub,Club 33 Limited,9 Wadeson Stree,,,Tower Hamlets,,,E09000030,Bethnal Green,E05009317,51.530925,-0.051609783,535244.4297,183133.9645
+nightclub,The Box Soho ,11-12 Walker's Ct,,11-12 Walker's Ct,Westminster,https://www.theboxsoho.com/,,E09000033,West End,E05013808,51.513095,-0.134889589,529518.8823,181000.6229
+nightclub,Luxx Club,15 Berkeley Street,,,Westminster,,,E09000033,West End,E05013808,51.50832002,-0.143389971,528942.5559,180454.6431
+nightclub,Club 49,49 Greek Street,,,Westminster,,,E09000033,West End,E05013808,51.51410001,-0.130970003,529787.989,181119.3187
+nightclub,M.O.T Venue Ltd,Unit 18,Orion Business Centre Surrey Canal Ro,,Lewisham,,,E09000023,New Cross Gate,E05013728,51.48441001,-0.04809997,535625.9001,177967.9279
