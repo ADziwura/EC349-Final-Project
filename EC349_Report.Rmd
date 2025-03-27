@@ -4,9 +4,6 @@ author: "u2110450"
 date: "`r Sys.Date()`"
 bibliography: EC349references.bib
 output:
-  pdf_document:
-    toc: true
-    toc_depth: '3'
   html_document:
     df_print: paged
     toc: true
@@ -15,6 +12,9 @@ output:
       collapsed: false
     theme: united
     highlight: textmate
+  pdf_document:
+    toc: true
+    toc_depth: '3'
 editor_options:
   chunk_output_type: console
   markdown:
@@ -1573,6 +1573,10 @@ ggplot(plot_data, aes(x = Actual, y = Predicted)) +
   )
 ```
 
+![](Graphics/RF Model performance.png)
+
+![](Graphics/RF Normality of errors test.png)
+
 ```{r XGBoost, eval=FALSE}
 # XGBoost: -----------
 
@@ -1662,6 +1666,8 @@ ggplot(plot_data, aes(x = Actual, y = Predicted, color = Dataset)) +
   theme(legend.position = "top") +
   theme(plot.title = element_text(hjust = 0.5))
 ```
+
+![](Graphics/XGBoost QQ test for normality.png)
 
 ```{r Bayesian-XGBoost, eval=FALSE}
 # Bayesian XGBoost ------------
@@ -1773,6 +1779,8 @@ ggplot(plot_data, aes(x = Actual, y = Predicted, color = Dataset)) +
   theme(legend.position = "top") +
   theme(plot.title = element_text(hjust = 0.5))
 ```
+
+![](Graphics/Bayesian XGBoost performance.png)
 
 ```{r 'Frankenstein', eval=FALSE}
 # Frankenstein Model ----------
@@ -1940,6 +1948,8 @@ importance_plot <- xgb.ggplot.importance(
 
 print(importance_plot)
 ```
+
+![](Graphics/XGBoost Feature Importance.png)
 
 ##Additional and compute-heavy Python and *R* codes are available below:
 
